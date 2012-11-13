@@ -1,0 +1,40 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hdpvcC1oEeKgx4EWM9YkNw
+Element-Name: Try to cCreate Same-Named Folder
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7LgNsC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:13 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Create F1 folder in MyProject;
+2. Try to create one more F1 folder;
+3. Make sure that "F1" already exists error is shown and "Finish" button is disabled. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select MyProject | get-menu "New/Folder" | click
+with [get-window "New Folder"] {
+    get-editbox -after [get-label "Folder name:"] | set-text F1
+    get-button Finish | click
+}
+get-view "Package Explorer" | get-tree | get-item "MyProject/F1" | get-property caption | equals F1 | verify-true
+get-view "Package Explorer" | get-tree | select MyProject | get-menu "New/Folder" | click
+get-window "New Folder" | get-editbox -after [get-label "Folder name:"] | set-text F1
+with [get-window "New Folder"] {
+    get-editbox -after [get-label Folder] | get-property text | equals "\'F1\' already exists." | verify-true
+    get-button Finish | get-property enablement | equals false | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

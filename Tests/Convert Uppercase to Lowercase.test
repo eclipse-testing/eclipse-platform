@@ -1,0 +1,55 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
+Element-Name: Convert Uppercase to Lowercase
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7ILM4C1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:05 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open File2;
+2. Select all and press Ctrl+Shift+Y;
+3. Make sure all text is in lowercase;
+4. Press Ctrl+Shift+X;
+5. Make sure all text is in uppercase.
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/src/File2" | double-click
+with [get-editor File2] {
+    click
+    with [get-text-viewer] {
+        key-type "M1+a"
+        set-caret-pos 6 5
+        key-type "M1+a"
+        key-type "M1+M2+y"
+    }
+}
+get-editor File2 | get-editbox | get-property text | equals "this is a text of file2\n\n"
+    + "aaaa\n"
+    + "bbbb\n"
+    + "cccc\n"
+    + "dddd" | verify-true
+with [get-editor File2 | get-text-viewer] {
+    set-caret-pos 6 5
+    key-type "M1+a"
+    key-type "M1+M2+x"
+}
+get-editor File2 | get-editbox | get-property text | equals "THIS IS A TEXT OF FILE2\n\n"
+    + "AAAA\n"
+    + "BBBB\n"
+    + "CCCC\n"
+    + "DDDD" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

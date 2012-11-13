@@ -1,0 +1,37 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Element-Name: Close Others Editors
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: http://jira4.xored.com/browse/QS-2158
+Id: _7H7VQC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:05 PM
+Tags: skipExecution, Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open Class1 and Class2 editors;
+2. Select Class2 and press Close/Other editors;
+3. Make sure Class2 editor stays opened. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+with [get-view "Package Explorer" | get-tree] {
+    select "MyProject/src/\\(default package\\)/Class1.java" | double-click
+    select "MyProject/src/\\(default package\\)/Class2.java" | double-click
+}
+get-menu "Close Others" | click
+with [get-tab-folder -index 1] {
+    get-property activePage | equals "Class2.java" | verify-true
+    get-property tabCount | equals 1 | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

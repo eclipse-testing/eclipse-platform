@@ -1,0 +1,49 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Element-Name: Export Resource To File System
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7Jy9gC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:05 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select MyProject | get-menu "New/File" | click
+with [get-window "New File"] {
+    get-editbox -after [get-label "File name:"] | set-text File1
+    get-button Finish | click
+}
+with [get-view "Package Explorer"] {
+    click
+    get-tree | select "MyProject/File1" | get-menu "Export..." | click
+}
+with [get-window Export] {
+    get-tree | select "General/Archive File"
+    get-button "Next >" | click
+}
+set-dialog-result File "platform:/resource/f1.zip"
+with [get-window Export] {
+    get-button "Browse..." | click
+    get-button Finish | click
+}
+get-view "Package Explorer" | get-tree | select MyProject | get-menu "Import..." | click
+with [get-window Import] {
+    get-tree | select "General/File System"
+    get-button "Next >" | click
+}
+set-dialog-result Folder "platform:/resource/"
+with [get-window Import] {
+    get-button "Browse..." | click
+    get-table | get-item "f1.zip" | check
+    get-button Finish | click
+}
+get-view "Package Explorer" | get-tree | get-item "MyProject/f1.zip" | get-property caption | equals "f1.zip" 
+    | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

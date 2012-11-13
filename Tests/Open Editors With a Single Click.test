@@ -1,0 +1,53 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Element-Name: Open Editors With a Single Click
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: http://jira4.xored.com/browse/QS-2129
+Id: _7KkZkC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:05 PM
+Tags: skipExecution, Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Go to Window/Preferences and select "One click" in Open mode settings;
+2. Press Apply, OK;
+3. Make single-click on class1 in Package Explorer;
+4. Make sure that class1 editor has been opened;
+5. Go to Window/Preferences and select "Double click" in Open mode settings;
+6. Close class1 editor;
+7. Try to do single-click on class1 - make sure that no editors have been opened. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select General
+    get-group "Open mode" | get-button "Single click" | click
+    get-button Apply | click
+    get-button OK | click
+}
+get-view "Package Explorer" | get-tree | select "MyProject/src/\\(default package\\)/Class1.java" |click
+with [get-tab-folder -index 1] {
+    get-property activePage | equals "Class1.java" | verify-true
+    get-property tabCount | equals 1 | verify-true
+}
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select General
+    get-group "Open mode" | get-button "Double click" | click
+    get-button Apply | click
+    get-button OK | click
+}
+get-view "Package Explorer" | get-tree | select "MyProject/src/\\(default package\\)/Class1.java"
+get-tab-folder -index 1 | get-property tabCount | equals 0 | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

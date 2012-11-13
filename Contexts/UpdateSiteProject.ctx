@@ -1,0 +1,42 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.workspace.context
+Element-Name: UpdateSiteProject
+Element-Type: context
+Element-Version: 2.0
+Id: _hgY6YC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:02 PM
+
+------=_contents/USP/.project-419680e4-b2ef-3706-b444-111304b70b4a
+Content-Type: q7/binary
+Entry-Name: contents/USP/.project
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAAALmNvbnRlbnR9UMsKwjAQPCv4DyV3G715SCuoeBSh
+9gNispRI8yBJxc83iamlHrztDDM7s0v2L9kXT7BOaFWhbblBBSimuVBdhdrbeb1D+3q1JMbqBzB/Ases
+MD6oA7sgikqo2+ZKcJoixbSUoHxN8DhFNvtdAniG7oPoeWOARZThMVip4onJKdp2JbBeGAel4VC2hlMP
+jfBwiA6wU4dgobYbYrjLGM8Jgn9jMjP2CJl+sJDVH/CnwiUJYoMkTPumDd+D5+97A1BLBwi5IE64vwAA
+AH0BAABQSwECFAAUAAgICAAAACEAuSBOuL8AAAB9AQAACAAAAAAAAAAAAAAAAAAAAAAALmNvbnRlbnRQ
+SwUGAAAAAAEAAQA2AAAA9QAAAAAA
+------=_contents/USP/.project-419680e4-b2ef-3706-b444-111304b70b4a--
+------=_contents/USP/site.xml-84fcb252-fab6-3f22-9ccf-3fe56cbb47bc
+Content-Type: q7/binary
+Entry-Name: contents/USP/site.xml
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAAALmNvbnRlbnSzsa/IzVEoSy0qzszPs1Uy1DNQUkjN
+S85PycxLt1UKDXHTtVCyt+PlsinOLEkF0fpQBgBQSwcI9zusnTMAAAA5AAAAUEsBAhQAFAAICAgAAAAh
+APc7rJ0zAAAAOQAAAAgAAAAAAAAAAAAAAAAAAAAAAC5jb250ZW50UEsFBgAAAAABAAEANgAAAGkAAAAA
+AA==
+------=_contents/USP/site.xml-84fcb252-fab6-3f22-9ccf-3fe56cbb47bc--
+------=_.q7.content-3d2e0690-ce48-3609-83e0-c704d49f1eaf
+Content-Type: q7/binary
+Entry-Name: .q7.content
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAAALmNvbnRlbnSNkM1OwzAQhO9IvIO1d2yKEIUooYeq
+B4SKKlUo5IQiZ+OaJnZqG+LHZ/uT9NJDb979xjMep7PYNuwPndfWZDDh98DQSFtpozL4DfXdM8xeb29S
+aVsercOK76a8t27ru1Jikg+nuTUBY2Cx1clo97C3owDjE9pnsAmhS4To+57bVnHrlPhavg2SyxHjLUFc
+HLjYTcXIOUraATNlS9rPrioDrnXAlbM/KAMwXWXwvVHFUzGf2AW+q/i4yJcvxfajByYbLF1+zqrLxiNQ
+YcaoMlUy4TDQ2B0N/ZC0XsEJEax1gwPhJyWIy9zT6zhVHnkqBu9jsDgn789XfTxp/wFQSwcIUb/Uq/wA
+AADMAQAAUEsBAhQAFAAICAgAAAAhAFG/1Kv8AAAAzAEAAAgAAAAAAAAAAAAAAAAAAAAAAC5jb250ZW50
+UEsFBgAAAAABAAEANgAAADIBAAAAAA==
+------=_.q7.content-3d2e0690-ce48-3609-83e0-c704d49f1eaf--

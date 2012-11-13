@@ -1,0 +1,36 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_he2CQC1oEeKgx4EWM9YkNw
+Element-Name: Rename Folder
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7LEI0C1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:13 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Right-click folder and select Refactor/Rename;
+2. Set new folder name;
+3. Make sure that folder has been renamed. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/F2" | get-menu "Refactor/Rename..." | click
+with [get-window "Rename Resource"] {
+    get-editbox -after [get-label "New name:"] | set-text "F2_renamed"
+    get-button OK | click
+}
+get-view "Package Explorer" | get-tree | get-item "MyProject/F2_renamed" | get-property caption | equals "F2_renamed" 
+    | verify-true
+get-view "Package Explorer" | get-tree | select "MyProject/F2_renamed"
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

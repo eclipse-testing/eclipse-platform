@@ -1,0 +1,42 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Element-Name: Compare With Each Other
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7IDREC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:05 PM
+Tags: skipExecution, Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Select Class1 and Class2, right-click and choose Compare With/Each other;
+2. Make sure that Compare view is opened and Java Source Compare table is shown.
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+with [get-view "Package Explorer" | get-tree] {
+    select "MyProject/src/\\(default package\\)/Class1.java" "MyProject/src/\\(default package\\)/Class2.java"
+    get-menu "Compare With/Each Other" | click
+}
+get-editor "Compare (\'MyProject/src/Class1.java\' - \'MyProject/src/Class2.java\')" | click
+with [get-editor "Compare (\'MyProject/src/Class1.java\' - \'MyProject/src/Class2.java\')"] {
+    get-editbox -after [get-label "MyProject/src/Class2.java"] | get-property text | equals "public class Class1 {\n\n"
+        + "}" | verify-true
+    get-editbox -after [get-label "MyProject/src/Class2.java"] -index 1 | get-property text 
+        | equals "public class Class2 {\n\n"
+        + "}" | verify-true
+    get-tree | get-property itemCount | equals 1 | verify-true
+}
+get-tab-folder -index 1 | get-property activePage 
+    | equals "Compare (\'MyProject/src/Class1.java\' - \'MyProject/src/Class2.java\')" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

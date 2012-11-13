@@ -1,0 +1,16 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.ecl.context
+Element-Name: Clear Working Sets
+Element-Type: context
+Element-Version: 2.0
+Id: _hblS4C1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:02 PM
+
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
+Content-Type: text/ecl
+Entry-Name: .ecl.context
+
+list-working-sets | foreach {delete-working-set}
+------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998--

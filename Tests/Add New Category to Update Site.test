@@ -1,0 +1,56 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hgY6YC1oEeKgx4EWM9YkNw
+Element-Name: Add New Category to Update Site
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7HTqMC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:09 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open update site map and click "New Category" button;
+2. Set category ID, Name and description;
+3. Make sure new category is displayed in Categories table and in Outline view. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "USP/site.xml" | double-click
+
+
+with [get-editor "site.xml"] {
+    get-section "Managing the Site" | get-button "New Category" | click
+    with [get-section "Category Properties"] {
+        with [get-editbox -after [get-label "ID*:"]] {
+            set-focus
+            key-type "M1+a"
+            set-text ctg1
+        }
+        with [get-editbox -after [get-label "Name*:"]] {
+            set-focus
+            key-type "M1+a"
+            set-text ctg1
+        }
+        with [get-editbox -after [get-label "Description:"]] {
+            set-text "ctg1 description"
+            key-type "M1+s"
+            
+        }
+    }
+}
+with [get-editor "site.xml" | get-section "Managing the Site" | get-tree] {
+    get-property itemCount | equals 1 | verify-true
+    get-item ctg1 | get-property caption | equals ctg1 | verify-true
+}
+get-view Outline | get-tree | get-item "Site Map/ctg1" | get-property caption | equals ctg1 | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

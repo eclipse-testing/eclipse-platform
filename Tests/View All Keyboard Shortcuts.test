@@ -1,0 +1,42 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Element-Name: View All Keyboard Shortcuts
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7LowkC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:05 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open class1 editor;
+2. Press Ctrl+Shift+L;
+3. Make sure that window appears showing all keyboard shortcuts. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/src/\\(default package\\)/Class1.java" 
+    | select "MyProject/src/\\(default package\\)/Class1.java" | double-click
+with [get-editor "Class1.java"] {
+    click
+    with [get-text-viewer] {
+        set-caret-pos 5 1
+        key-type "M1+M2+l"
+    }
+}
+with [get-window -from "Window.createShell()" | get-table] {
+    select "Close All" | click -default
+   
+}
+get-editor "Class1.java" | get-text-viewer | set-caret-pos 5 1
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,45 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Element-Name: Close And Open Project
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7HkI4C1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 3:12 PM
+Tags: Platform
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open Class1 and Class2 editors;
+2. Right-click MyProject in Package explorer and select "Close Project" command;
+3. Make sure that both editors are closed;
+4. Right-click MyProject again and select "Open Project".
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/src/\\(default package\\)/Class1.java" | double-click
+get-editor "Class1.java" | click
+with [get-view "Package Explorer"] {
+    click
+    get-tree | select "MyProject/src/\\(default package\\)/Class2.java" | double-click
+}
+get-editor "Class2.java" | click
+get-tab-folder -index 1 | get-property tabCount | equals 2 | verify-true
+with [get-view "Package Explorer"] {
+    click
+    get-tree | select MyProject | get-menu "Close Project" | click
+}
+get-tab-folder -index 1 | get-property tabCount | equals 0 | verify-true
+get-view "Package Explorer" | get-tree | select MyProject | get-menu "Open Project" | click
+get-view "Package Explorer" | get-tree | get-item "MyProject/src/\\(default package\\)" | get-property childCount 
+    | equals 2 | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
