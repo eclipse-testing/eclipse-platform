@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
 Element-Name: Search Replace From Search View
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7LUAcC1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:05 PM
+Save-Time: 11/13/12 4:29 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -29,25 +29,23 @@ Entry-Name: .content
 
 get-menu "Search/File..." | click
 with [get-window Search] {
-    get-combo -after [get-label "Containing text:"] | set-text class
+    get-combo -after [get-label "Containing text:"] | set-text text
     get-button Search | click
 }
 with [get-view Search | get-tree] {
-    get-item "MyProject/src/Class1.java \\(2 matches\\)" | get-property caption | equals "Class1.java (2 matches)" 
-        | verify-true
-    get-item "MyProject/src/Class2.java \\(2 matches\\)" | get-property caption | equals "Class2.java (2 matches)" 
-        | verify-true
+    get-item MyProject | get-property childCount | equals 2 | verify-true
+    get-item "MyProject/File1" | get-property caption | equals File1 | verify-true
+    get-item "MyProject/File2" | get-property caption | equals File2 | verify-true
 }
-get-view Search | get-tree | select "MyProject/src/Class1.java \\(2 matches\\)" | get-menu "Replace Selected..." | click
+get-view Search | get-tree | select "MyProject/File1" | get-menu "Replace Selected..." | click
 with [get-window "Replace Selected Text Matches"] {
-    get-combo -after [get-label "With:"] | set-text classB
+    get-combo -after [get-label "With:"] | set-text textA
     get-button OK | click
 }
-with [get-view "Package Explorer"] {
-    click
-    get-tree | select "MyProject/src/\\(default package\\)/Class1.java" 
-        | select "MyProject/src/\\(default package\\)/Class1.java" | double-click
-}
-get-editor "Class1.java" | get-editbox | get-property text | equals "public classB classB1 {\n\n"
-    + "}" | verify-true
+get-view "Package Explorer" | get-tree | select "MyProject/File1" | double-click
+get-editor File1 | get-editbox | get-property text | equals "This is a textA of File1\n\n"
+    + "1111\n"
+    + "2222\n"
+    + "3333\n"
+    + "4444" | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

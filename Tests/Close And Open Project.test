@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
 Element-Name: Close And Open Project
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7HkI4C1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:12 PM
+Save-Time: 11/13/12 3:48 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -26,20 +26,12 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | select "MyProject/src/\\(default package\\)/Class1.java" | double-click
-get-editor "Class1.java" | click
-with [get-view "Package Explorer"] {
-    click
-    get-tree | select "MyProject/src/\\(default package\\)/Class2.java" | double-click
-}
-get-editor "Class2.java" | click
-get-tab-folder -index 1 | get-property tabCount | equals 2 | verify-true
-with [get-view "Package Explorer"] {
-    click
-    get-tree | select MyProject | get-menu "Close Project" | click
+with [get-view "Package Explorer" | get-tree] {
+    select "MyProject/File1" | double-click
+    select "MyProject/File2" | double-click
+    select MyProject | get-menu "Close Project" | click
 }
 get-tab-folder -index 1 | get-property tabCount | equals 0 | verify-true
 get-view "Package Explorer" | get-tree | select MyProject | get-menu "Open Project" | click
-get-view "Package Explorer" | get-tree | get-item "MyProject/src/\\(default package\\)" | get-property childCount 
-    | equals 2 | verify-true
+get-view "Package Explorer" | get-tree | get-item MyProject | get-property childCount | equals 2 | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

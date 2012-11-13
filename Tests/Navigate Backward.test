@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
 Element-Name: Navigate Backward
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7KT64C1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:05 PM
+Save-Time: 11/13/12 4:18 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -17,25 +17,25 @@ Entry-Name: .description
 
 TEST STEPS
 
-1. Open class1 editor;
-2. Open class2 editor;
+1. Open file1 editor;
+2. Open file2 editor;
 3. Make sure that class2 editor is active;
 4. Press Alt+Left (=navigate Back);
-5. Make sure that class1 editor is active. 
+5. Make sure that file1 editor is active. 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | select "MyProject/src/\\(default package\\)/Class1.java" | double-click
-get-editor "Class1.java" | click
+get-view "Package Explorer" | get-tree | select "MyProject/File1" | double-click
+get-editor "File1" | click
 with [get-view "Package Explorer"] {
     click
-    get-tree | select "MyProject/src/\\(default package\\)/Class2.java" | double-click
+    get-tree | select "MyProject/File2" | double-click
 }
-get-editor "Class2.java" | click
+get-editor "File2" | click
 with [get-tab-folder -index 1] {
-    get-property activePage | equals "Class2.java" | verify-true
+    get-property activePage | equals "File2" | verify-true
     get-property tabCount | equals 2 | verify-true
 }
 
@@ -43,7 +43,7 @@ with [get-tab-folder -index 1] {
 get-eclipse-window | key-type "M3+ARROW_LEFT"
 
 with [get-tab-folder -index 1] {
-    get-property activePage | equals "Class1.java" | verify-true
+    get-property activePage | equals "File1" | verify-true
     get-property tabCount | equals 2 | verify-true
 }
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

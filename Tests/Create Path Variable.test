@@ -1,13 +1,13 @@
 --- Q7 testcase ---
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
-Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_heLT4C1oEeKgx4EWM9YkNw
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
 Element-Name: Create Path Variable
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7I7a0C1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:05 PM
+Save-Time: 11/13/12 3:59 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -31,7 +31,7 @@ with [get-window Preferences] {
     get-button "New..." | click
     get-window "New Variable" | get-editbox -after [get-label "Name:"] | set-text Var1
 }
-set-dialog-result File "platform:/resource/MyProject/src/Class1.java"
+set-dialog-result File "platform:/resource/MyProject/File1"
 with [get-window Preferences | get-window "New Variable"] {
     get-button "File..." | click
     get-button OK | click

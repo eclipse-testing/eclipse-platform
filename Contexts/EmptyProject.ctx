@@ -1,0 +1,32 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Context-Type: com.xored.q7.workspace.context
+Element-Name: EmptyProject
+Element-Type: context
+Element-Version: 2.0
+Id: _hdpvcC1oEeKgx4EWM9YkNw
+Save-Time: 11/13/12 4:25 PM
+
+------=_contents/MyProject/.project-db7607a0-e356-3aa3-a20e-b3efc9871b2e
+Content-Type: q7/binary
+Entry-Name: contents/MyProject/.project
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAAALmNvbnRlbnSzsa/IzVEoSy0qzszPs1Uy1DNQUkjN
+S85PycxLt1UKDXHTtVCyt+Plsikoys9KTS5xSS1OLsosKAGqBopy2uQl5qba+VYGQGRt9MF8kERyfm5u
+al6JnY0+jAUShZpSDOboo/CSSjNzUoILUpMhcqjcvMSS0qJUqDYEB24EqrMAUEsHCNSdZ4d/AAAA1QAA
+AFBLAQIUABQACAgIAAAAIQDUnWeHfwAAANUAAAAIAAAAAAAAAAAAAAAAAAAAAAAuY29udGVudFBLBQYA
+AAAAAQABADYAAAC1AAAAAAA=
+------=_contents/MyProject/.project-db7607a0-e356-3aa3-a20e-b3efc9871b2e--
+------=_.q7.content-3d2e0690-ce48-3609-83e0-c704d49f1eaf
+Content-Type: q7/binary
+Entry-Name: .q7.content
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAAALmNvbnRlbnSNkD9PwzAQxXckvoN1OzZFSIWooUOV
+AaEgtsCEIueShsZ/apvafHuubZIuDGx3955/T8+rdVIDO6DzvdE5LPgtMNTSNL3ucvgO7c0DrJ+ur1bS
+KJ6Mw4bvlzwat/O2lphV07QxOmAKLKk+m3F3RxwFaJ/RPYdtCDYTIsbIjeq4cZ14L58ny98R8ytBujjp
+Yr8Us85R0g2YrhV5C2XDz5szXygDsL7J4XPb2IPcLEyBL126L6ry8WP3GoHJAWtXXWLaevAI1JUxaktt
+dDgttNoz0I8h5ZwwGsjS9gNOOh/9ICaAmAhnvLjwj/O/fpa8v1BLBwiB9VKV7wAAAK0BAABQSwECFAAU
+AAgICAAAACEAgfVSle8AAACtAQAACAAAAAAAAAAAAAAAAAAAAAAALmNvbnRlbnRQSwUGAAAAAAEAAQA2
+AAAAJQEAAAAA
+------=_.q7.content-3d2e0690-ce48-3609-83e0-c704d49f1eaf--
