@@ -1,0 +1,48 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw
+Element-Name: Save Perspective
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _vgrgIC16EeKPSvD7PhDlFA
+Save-Time: 11/13/12 5:18 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open Resource Perspective;
+2. Open Ant view;
+3. Select Save Perspective As... - set "My Perspective" name;
+4. Open My perspective - make sure that Ant view is shown. 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-eclipse-window | key-type "M1+3"
+with [get-editbox] {
+    set-text ant
+    key-type Enter
+    set-text ""
+}
+get-view Ant | get-tree | key-type Enter
+get-menu "Window/Save Perspective As..." | click
+with [get-window "Save Perspective As..."] {
+    get-editbox -after [get-label "Name:"] | set-text MyResource
+    get-button OK | click
+}
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select "General/Perspectives"
+    get-table | select MyResource
+    get-button Delete | click
+    get-window "Delete Perspective" | get-button Yes | click
+    get-button OK | click
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
