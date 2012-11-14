@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>e4.platform.tests</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>q7test</packaging>
+
+  <parent>
+	<groupId>com.xored</groupId>
+	<artifactId>e4</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom-runner.xml</relativePath>
+  </parent>
+  
+  <build>
+	<plugins>
+	  <plugin>
+		<groupId>com.xored.q7</groupId>
+		<artifactId>q7-maven-plugin</artifactId>
+		<version>${q7-maven-version}</version>
+		<extensions>true</extensions>
+		<configuration>
+		  <aut>
+			<groupId>eclipse</groupId>
+			<artifactId>sdk</artifactId>
+			<version>4.2.1</version>
+		  </aut>
+		  <testOptions>
+			<execTimeout>7200</execTimeout>
+		  </testOptions>
+		  <q7>
+			<version>${q7-runner-version}</version>
+		  </q7>
+		</configuration>
+	  </plugin>
+	</plugins>
+  </build>
+  
+</project>
