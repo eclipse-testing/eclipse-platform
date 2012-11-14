@@ -1,0 +1,43 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hgExUC1oEeKgx4EWM9YkNw,_IkuNUC40EeKvZeCqdce96Q,_hecZoC1oEeKgx4EWM9YkNw
+Element-Name: Open File From Associated Task
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _rmXuAC47EeKvZeCqdce96Q
+Save-Time: 11/14/12 4:18 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Create associated task;
+2. In tasks view right-click the task and select "Go To";
+3. Make sure that associated file is opened;
+4. Close file editor;
+5. Double -click task - make sure that associated file is opened. 
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/File1" | double-click
+with [get-editor File1 | get-left-ruler] {
+    get-ruler-column AnnotationColumn | click-ruler -line 5 -button Right
+    get-menu "Add Task..." | click
+}
+get-window Properties | get-button OK | click
+get-editor File1 | close
+get-tab-folder -index 1 | get-property tabCount | equals 0 | verify-true
+get-view Tasks | get-tree | select "" | get-menu "Go to" | click
+get-tab-folder -index 1 | get-property activePage | equals File1 | verify-true
+get-editor File1 | close
+get-view Tasks | get-tree | select "" | double-click
+get-tab-folder -index 1 | get-property activePage | equals File1 | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,47 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hgExUC1oEeKgx4EWM9YkNw,_IkuNUC40EeKvZeCqdce96Q,_hecZoC1oEeKgx4EWM9YkNw
+Element-Name: Add Associated Task
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _CYAksC46EeKvZeCqdce96Q
+Save-Time: 11/14/12 4:05 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open a text file by double clicking on it in one of the navigation views;
+2. In the editor area directly to the left of any line in the text editor, access the context menu from the marker bar. The marker bar is the vertical bar to the left of the main text area;
+3. From the marker bar's context menu, select Add Task....;
+4. Make sure that associated task appeared in Tasks view. 
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/File1" | double-click
+with [get-editor File1 | get-left-ruler] {
+    get-ruler-column AnnotationColumn | click-ruler -line 5 -button Right
+    get-menu "Add Task..." | click
+}
+with [get-window Properties] {
+    get-editbox -after [get-label "Description:"] | set-text NewAssociatedTask
+    get-button OK | click
+}
+with [get-view Tasks | get-tree] {
+    get-item "" | get-property columns -index 0 | equals "" | verify-true
+    get-item "" | get-property columns -index 1 | equals "" | verify-true
+    get-item "" | get-property columns -index 2 | equals NewAssociatedTask | verify-true
+    get-item "" | get-property columns -index 3 | equals File1 | verify-true
+    get-item "" | get-property columns -index 4 | equals "/MyProject" | verify-true
+    get-item "" | get-property columns -index 5 | equals "line 5" | verify-true
+    get-item "" | get-property columns -index 6 | equals Task | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

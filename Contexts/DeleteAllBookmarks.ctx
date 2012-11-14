@@ -2,17 +2,17 @@
 Format-Version: 1.0
 Q7-vendor: www.xored.com/q7
 Context-Type: com.xored.q7.ecl.context
-Element-Name: DeleteAllTasks
+Element-Name: DeleteAllBookmarks
 Element-Type: context
 Element-Version: 2.0
-Id: _IkuNUC40EeKvZeCqdce96Q
-Save-Time: 11/14/12 3:49 PM
+Id: _WlPBEC48EeKvZeCqdce96Q
+Save-Time: 11/14/12 4:19 PM
 
 ------=_.ecl.context-718f04b4-ed39-33e3-af62-0995e4561998
 Content-Type: text/ecl
 Entry-Name: .ecl.context
 
-with [get-view Tasks | get-tree] {
+with [get-view Bookmarks | get-tree] {
 	get-items | foreach {
 		select-item | get-menu Delete | click
 		get-window "Delete Selected Entries" | get-button Yes | click 

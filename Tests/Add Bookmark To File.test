@@ -1,0 +1,41 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_g4fZkC48EeKvZeCqdce96Q,_WlPBEC48EeKvZeCqdce96Q,_hecZoC1oEeKgx4EWM9YkNw
+Element-Name: Add Bookmark To File
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: __jMMUC48EeKvZeCqdce96Q
+Save-Time: 11/14/12 4:25 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. In one of the navigation views select the file File1. 
+2. From the main Workbench menu select Edit > Add Bookmark.
+3. This will bookmark the file using the filename to describe the bookmark.
+4. Observe the Bookmarks view contains bookmark.
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Package Explorer" | get-tree | select "MyProject/File1"
+get-menu "Edit/Add Bookmark..." | click
+with [get-window "Bookmark Properties"] {
+    get-editbox -after [get-label "Description:"] | set-text File1Bookmark
+    get-button OK | click
+}
+with [get-view Bookmarks | get-tree] {
+    get-property itemCount | equals 1 | verify-true
+    get-item File1Bookmark | get-property columns -index 0 | equals File1Bookmark | verify-true
+    get-item File1Bookmark | get-property columns -index 1 | equals File1 | verify-true
+    get-item File1Bookmark | get-property columns -index 2 | equals "/MyProject" | verify-true
+    get-item File1Bookmark | get-property columns -index 3 | equals Unknown | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
