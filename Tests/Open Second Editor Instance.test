@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7KsVYC1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 4:23 PM
+Save-Time: 11/15/12 4:11 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -25,21 +25,21 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | select "MyProject/File1" | double-click
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
 get-editor "File1" | click
-with [get-tab-folder -index 1] {
+with [get-tab-folder -index 2] {
     get-property activePage | equals "File1" | verify-true
     get-property tabCount | equals 1 | verify-true
 }
 get-menu "Window/New Editor" | click
 get-editor "File1" | click
-with [get-tab-folder -index 1] {
+with [get-tab-folder -index 2] {
     get-property tabCount | equals 2 | verify-true
     get-property activePage | equals "File1" | verify-true
 }
 get-editor "File1" | click
 get-editor "File1" | click
-with [get-tab-folder -index 1] {
+with [get-tab-folder -index 2] {
     get-property pages -index 0 | equals "File1" | verify-true
     get-property pages -index 1 | equals "File1" | verify-true
 }

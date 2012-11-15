@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7JSnMC1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:05 PM
+Save-Time: 11/15/12 4:15 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -27,7 +27,7 @@ Entry-Name: .content
 
 get-button Search | get-property tooltip | equals Search | verify-true
 get-menu "Window/Customize Perspective..." | click
-with [get-window "Customize Perspective - Java"] {
+with [get-window "Customize Perspective - Resource"] {
     get-tree | select File | get-item Search | uncheck
     get-button OK | click
 }

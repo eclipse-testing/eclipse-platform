@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7KCOEC1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 4:08 PM
+Save-Time: 11/14/12 4:41 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -25,7 +25,7 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | select "MyProject/File1" | double-click
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
 get-editor File1 | click
 get-editor File1 | get-editbox | get-property text | equals "This is a text of File1\n\n"
     + "1111\n"

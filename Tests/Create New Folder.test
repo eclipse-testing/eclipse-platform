@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7IjnYC1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:57 PM
+Save-Time: 11/14/12 4:41 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -25,11 +25,11 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | select MyProject | get-menu "New/Folder" | click
+get-view "Project Explorer" | get-tree | select MyProject | get-menu "New/Folder" | click
 with [get-window "New Folder"] {
     get-editbox -after [get-label "Folder name:"] | set-text Folder1
     get-button Finish | click
 }
-get-view "Package Explorer" | get-tree | get-item "MyProject/Folder1" | get-property caption | equals Folder1 
+get-view "Project Explorer" | get-tree | get-item "MyProject/Folder1" | get-property caption | equals Folder1 
     | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

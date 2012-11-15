@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7ILM4C1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:53 PM
+Save-Time: 11/14/12 4:40 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -27,7 +27,7 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Package Explorer" | get-tree | select "MyProject/File2" | double-click
+get-view "Project Explorer" | get-tree | select "MyProject/File2" | double-click
 with [get-editor File2] {
     click
     with [get-text-viewer] {

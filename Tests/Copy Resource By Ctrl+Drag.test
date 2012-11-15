@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7IbrkC1oEeKgx4EWM9YkNw
-Save-Time: 11/13/12 3:55 PM
+Save-Time: 11/15/12 4:15 PM
 Tags: Platform
 Testcase-Type: ecl
 
@@ -17,7 +17,7 @@ Entry-Name: .description
 
 TEST STEPS
 
-1. In package explorer hold Ctrl key and drag File1 into the same project;
+1. In Project explorer hold Ctrl key and drag File1 into the same project;
 2. Set new copy name and press OK;
 3. Make sure that file copy has been created.  
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
@@ -25,23 +25,21 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-with [get-view "Package Explorer" | get-tree] {
+with [get-view "Project Explorer" | get-tree] {
     select "MyProject/File1"
-    get-item "MyProject/File1" | drag-start 5 10
-    get-item "MyProject/File1" | drag-enter 3 4 -detail 1 -operation 7
-    get-item "MyProject/File1" | drag-over 3 -operation 7
-    get-item MyProject | drag-over 23 11 -detail 1 -operation 7
+    get-item "MyProject/File1" | drag-start 11 8
+    get-item "MyProject/File1" | drag-enter 12 1 -detail 1 -operation 7
+    get-item "MyProject/File1" | drag-over 12 -detail 1 -operation 7
+    get-item MyProject | drag-over 33 7 -detail 1 -operation 7
     drag-exit
-    get-item MyProject | drag-accept 23 11 -detail 1 -operation 7
+    get-item MyProject | drag-accept 33 7 -detail 1 -operation 7
     drag-set-data
-    get-item MyProject | drop 23 11 -detail 1 -operation 7
+    get-item MyProject | drop 33 7 -detail 1 -operation 7
 }
-with [get-window "Name Conflict"] {
-    get-editbox -after [get-label "Enter a new name for \'File1\':"] | set-focus
-    get-button OK | click
-}
-get-view "Package Explorer" | get-tree | drag-end -detail 1
-with [get-view "Package Explorer" | get-tree] {
+get-window "File Operation" | get-button OK | click
+get-window "Name Conflict" | get-button OK | click
+get-view "Project Explorer" | get-tree | drag-end -detail 1
+with [get-view "Project Explorer" | get-tree] {
     get-item MyProject | get-property childCount | equals 3 | verify-true
     get-item "MyProject/Copy of File1" | get-property caption | equals "Copy of File1" | verify-true
 }

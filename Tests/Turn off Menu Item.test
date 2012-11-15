@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _CYwT8C4sEeKvZeCqdce96Q
-Save-Time: 11/14/12 2:27 PM
+Save-Time: 11/15/12 4:16 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -26,7 +26,7 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 get-menu "Window/Customize Perspective..." | click
-with [get-window "Customize Perspective - Java"] {
+with [get-window "Customize Perspective - Resource"] {
     get-tab-folder | get-tab-item "Menu Visibility" | click
     get-tree | select File | get-item Help | uncheck
     get-button OK | click
@@ -37,7 +37,7 @@ verify-error {get-menu "Help"}
 get-menu "File/Restart" | get-property caption | equals Restart | verify-true
 
 get-menu "Window/Customize Perspective..." | click
-with [get-window "Customize Perspective - Java"] {
+with [get-window "Customize Perspective - Resource"] {
     get-tab-folder | get-tab-item "Menu Visibility" | click
     get-tree | select File | get-item Help | check
     get-button OK | click
