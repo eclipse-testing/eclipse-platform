@@ -12,9 +12,34 @@
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  
+
+  <properties>
+    <platform-file>eclipse-platform-${build-name}-win32.zip</platform-file>
+    <platform-url>http://eclipse.org</platform-url>
+    <platform-path>downloads/download.php?file=/eclipse/downloads/drops4/${build-name}/eclipse-platform-${build-name}-win32.zip&amp;url=http://download.eclipse.org/eclipse/downloads/drops4/${build-name}/eclipse-platform-${build-name}-win32.zip&amp;mirror_id=1</platform-path>
+  </properties>
+
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>wagon-maven-plugin</artifactId>
+        <version>1.0-beta-4</version>
+        <executions>
+          <execution>
+            <id>download</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>download-single</goal>
+            </goals>
+            <configuration>
+              <url>${platform-url}</url>
+              <fromFile>${platform-path}</fromFile>
+              <toFile>${project.build.directory}/aut/${platform-file}</toFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>com.xored.q7</groupId>
         <artifactId>q7-server-maven-plugin</artifactId>
@@ -28,7 +53,7 @@
            <locations>
              <location>
                <classifier>win32.win32.x86</classifier>
-               <path>${project.build.directory}/aut/${sdk-file}</path>
+               <path>${project.build.directory}/aut/${platform-file}</path>
              </location>
            </locations>         
           </aut>
