@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>e4.platform.tests</artifactId>
@@ -7,43 +7,48 @@
   <packaging>q7test</packaging>
 
   <parent>
-	<groupId>com.xored</groupId>
-	<artifactId>e4</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+    <groupId>com.xored</groupId>
+    <artifactId>e4</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   
   <build>
-	<plugins>
-	  <plugin>
-		<groupId>com.xored.q7</groupId>
-		<artifactId>q7-server-maven-plugin</artifactId>
-		<version>${q7-server-maven-version}</version>
-		<extensions>true</extensions>
-		<configuration>
-	      <classifiers>
-			<classifier>win32.win32.x86</classifier>
-		  </classifiers>
-		  <aut>
-		  	<uri>${sdk-build-uri}</uri>
-		  </aut>
-		  <testOptions>
-			<execTimeout>7200</execTimeout>
-		  </testOptions>
-		  <q7>
-			<version>${q7-runner-version}</version>
-		  </q7>
-		  <q7server>${q7-server-uri}</q7server>
-		  <q7client>
-		  	<version>${q7-version}</version>
-			<vmArgs>
-				<vmarg>-Xmx512m</vmarg>
-				<vmarg>-XX:+HeapDumpOnOutOfMemoryError</vmarg>
-			</vmArgs>
-		  </q7client>
-		</configuration>
-	  </plugin>
-	</plugins>
+    <plugins>
+      <plugin>
+        <groupId>com.xored.q7</groupId>
+        <artifactId>q7-server-maven-plugin</artifactId>
+        <version>${q7-server-maven-version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <classifiers>
+            <classifier>win32.win32.x86</classifier>
+          </classifiers>
+          <aut>
+           <locations>
+             <location>
+               <classifier>win32.win32.x86</classifier>
+               <path>${sdk-file}</path>
+             </location>
+           </locations>         
+          </aut>
+          <testOptions>
+            <execTimeout>7200</execTimeout>
+          </testOptions>
+          <q7>
+            <version>${q7-runner-version}</version>
+          </q7>
+          <q7server>${q7-server-uri}</q7server>
+          <q7client>
+            <version>${q7-version}</version>
+            <vmArgs>
+                <vmarg>-Xmx512m</vmarg>
+                <vmarg>-XX:+HeapDumpOnOutOfMemoryError</vmarg>
+            </vmArgs>
+          </q7client>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
   
 </project>
