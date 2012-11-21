@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _vgrgIC16EeKPSvD7PhDlFA
-Save-Time: 11/13/12 5:18 PM
+Save-Time: 11/21/12 6:02 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -17,26 +17,38 @@ Entry-Name: .description
 TEST STEPS
 
 1. Open Resource Perspective;
-2. Open Ant view;
-3. Select Save Perspective As... - set "My Perspective" name;
-4. Open My perspective - make sure that Ant view is shown. 
+2. Open Problems view;
+3. Select Save Perspective As... - set "MyResource" name;
+4. Open MyResource - make sure that Problems view is shown. 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-eclipse-window | key-type "M1+3"
-with [get-editbox] {
-    set-text ant
-    key-type Enter
-    set-text ""
+get-menu "Window/Open Perspective/Other..." | click
+with [get-window "Open Perspective"] {
+    get-table | select "Resource.*"
+    get-button OK | click
 }
-get-view Ant | get-tree | key-type Enter
+get-menu "Window/Show View/Problems" | click
 get-menu "Window/Save Perspective As..." | click
 with [get-window "Save Perspective As..."] {
     get-editbox -after [get-label "Name:"] | set-text MyResource
     get-button OK | click
 }
+get-menu "Window/Open Perspective/Other..." | click
+with [get-window "Open Perspective"] {
+    get-table | select Debug
+    get-button OK | click
+}
+get-menu "Window/Show View/Other..." | click
+get-window "Show View" | get-button Cancel | click
+get-menu "Window/Open Perspective/Other..." | click
+with [get-window "Open Perspective"] {
+    get-table | select MyResource
+    get-button OK | click
+}
+get-view Problems
 get-preferences-menu | click
 with [get-window Preferences] {
     get-tree | select "General/Perspectives"

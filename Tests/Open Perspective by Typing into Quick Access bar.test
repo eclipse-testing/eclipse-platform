@@ -7,7 +7,7 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _9pVu0C14EeKPSvD7PhDlFA
-Save-Time: 11/16/12 1:27 PM
+Save-Time: 11/21/12 5:52 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -27,5 +27,5 @@ Entry-Name: .content
 get-editbox | set-text Resource
 get-window -from "SearchField.createWidget()" | get-table | select Perspectives
 
-get-eclipse-window |  get-property -name title | equals "Resource - Eclipse SDK" | verify-true
+get-eclipse-window |  get-property -name title | equals "Resource.*" | verify-true
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
