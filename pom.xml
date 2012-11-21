@@ -43,7 +43,7 @@
       <plugin>
         <groupId>com.xored.q7</groupId>
         <artifactId>q7-server-maven-plugin</artifactId>
-        <version>${q7-server-maven-version}</version>
+        <version>${q7-version}</version>
         <extensions>true</extensions>
         <configuration>
           <classifiers>
@@ -61,7 +61,7 @@
             <execTimeout>7200</execTimeout>
           </testOptions>
           <q7>
-            <version>${q7-runner-version}</version>
+            <version>${q7-version}</version>
           </q7>
           <q7server>${q7-server-uri}</q7server>
           <q7client>
