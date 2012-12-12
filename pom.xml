@@ -33,6 +33,11 @@
               <goal>download-single</goal>
             </goals>
             <configuration>
+              <metadata>
+                <public>true</public>
+                <projectName>Eclipse 4.3 Platform Nightly Build</projectName>
+                <buildName>${build-name}</buildName>
+              </metadata>
               <url>${platform-url}</url>
               <fromFile>${platform-path}</fromFile>
               <toFile>${project.build.directory}/aut/${platform-file}</toFile>
