@@ -2,15 +2,16 @@
 	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>e4.platform.tests</artifactId>
+  <artifactId>e4.platform.tests.runner</artifactId>
+  <groupId>com.eclipse-testing</groupId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>q7test</packaging>
 
   <parent>
-	<groupId>com.xored</groupId>
-	<artifactId>e4</artifactId>
+	<groupId>com.eclipse-testing</groupId>
+	<artifactId>e4.platform.tests.parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-    <relativePath>../pom-runner.xml</relativePath>
+    <relativePath>pom-parent.xml</relativePath>
   </parent>
   
   <build>
