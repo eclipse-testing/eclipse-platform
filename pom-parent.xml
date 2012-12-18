@@ -5,7 +5,7 @@
   <artifactId>e4.platform.tests.parent</artifactId>
   <groupId>com.eclipse-testing</groupId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>q7test</packaging>
+  <packaging>pom</packaging>
 
   <properties>
     <q7-server-uri>cloud.xored.com</q7-server-uri>
