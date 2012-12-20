@@ -7,8 +7,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: http://jira4.xored.com/browse/QS-2129
 Id: _7KkZkC1oEeKgx4EWM9YkNw
-Save-Time: 12/18/12 2:06 PM
-Tags: skipExecution, Platform/Workbench
+Save-Time: 12/20/12 1:31 PM
+Tags: Platform/Workbench
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -19,11 +19,11 @@ TEST STEPS
 
 1. Go to Window/Preferences and select "One click" in Open mode settings;
 2. Press Apply, OK;
-3. Make single-click on class1 in Package Explorer;
-4. Make sure that class1 editor has been opened;
+3. Make single-click on File1 in Package Explorer;
+4. Make sure that File1 editor has been opened;
 5. Go to Window/Preferences and select "Double click" in Open mode settings;
-6. Close class1 editor;
-7. Try to do single-click on class1 - make sure that no editors have been opened. 
+6. Close File1 editor;
+7. Try to do single-click on File2 - make sure that no editors have been opened. 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
@@ -36,18 +36,24 @@ with [get-window Preferences] {
     get-button Apply | click
     get-button OK | click
 }
-get-view "Project Explorer" | get-tree | select "MyProject/File1" |click
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | click
 with [get-tab-folder -index 2] {
-    get-property activePage | equals "File1" | verify-true
+    get-property activePage | equals File1 | verify-true
     get-property tabCount | equals 1 | verify-true
 }
 get-preferences-menu | click
 with [get-window Preferences] {
-    get-tree | select General
+    get-tree | select General | click
     get-group "Open mode" | get-button "Double click" | click
     get-button Apply | click
     get-button OK | click
 }
-get-view "Project Explorer" | get-tree | select "MyProject/File1"
+get-editor File1 | close
+get-view "Project Explorer" | get-tree | select "MyProject/File2"
 get-tab-folder -index 2 | get-property tabCount | equals 0 | verify-true
+get-view "Project Explorer" | get-tree | select "MyProject/File2" | double-click
+with [get-tab-folder -index 2] {
+    get-property activePage | equals File2 | verify-true
+    get-property tabCount | equals 1 | verify-true
+}
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
