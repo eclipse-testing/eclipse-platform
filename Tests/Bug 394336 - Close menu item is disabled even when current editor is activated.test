@@ -1,0 +1,35 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
+Element-Name: Bug 394336 - Close menu item is disabled even when current editor is activated
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: https://bugs.eclipse.org/bugs/show_bug.cgi?id=394336
+Id: _nRyRUFsHEeK4FvzaGQ3MSg
+Save-Time: 1/10/13 4:43 PM
+Tags: Platform/Workbench
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open existing file using the default editor
+2. Open the File menu and Close menu action should be activated
+3. Select Close menu action - default editor should be closed
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
+get-menu "File/Close" | click
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
+get-menu "File/Close" | get-property enablement | equals true | verify-true
+get-menu "File/Close" | click
+get-tab-folder -index 2 | get-property tabCount | equals 0 | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

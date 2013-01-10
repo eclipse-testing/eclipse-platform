@@ -1,0 +1,67 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw
+Element-Name: Create Project With Invalid Name
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _OpkhQFsOEeK4FvzaGQ3MSg
+Save-Time: 1/10/13 5:47 PM
+Tags: Platform/Project
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Press Create New Project button
+2. Set invalid name of project (*, /, \, |, ?, :, ")
+3. Make sure that error is displayed in "New Project" window
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+emit {
+   set-param symbol "*"
+   set-param message "* is an invalid character in resource name \'*\'."
+} {
+   set-param symbol "?"
+   set-param message "? is an invalid character in resource name \'?\'."
+} {
+   set-param symbol "|"
+   set-param message "| is an invalid character in resource name \'|\'."
+} {
+   set-param symbol "/"
+   set-param message "/ is an invalid character in resource name \'/\'."
+} {
+   set-param symbol "\\"
+   set-param message "\\ is an invalid character in resource name \'\\\'."
+} {
+   set-param symbol ":"
+   set-param message ": is an invalid character in resource name \':\'."
+} {
+   set-param symbol "\""
+   set-param message "\" is an invalid character in resource name \'\"\'."
+} {
+   set-param symbol " "
+   set-param message "Project name must be specified"
+} | repeat-with {
+	get-button New | click -arrow
+	get-menu "Project..." | click
+	with [get-window "New Project"] {
+	    get-tree | select "General/Project"
+	    get-button "Next >" | click
+	    get-editbox -after [get-label "Project name:"] | set-text [get-param symbol]
+	}
+	with [get-window "New Project"] {
+	    get-editbox -after [get-label Project] | get-property text | equals [get-param message] | verify-true
+    	get-button Finish | get-property enablement | equals false | verify-true
+   		get-button "Next >" | get-property enablement | equals false | verify-true
+	}
+	get-window "New Project" | get-button Cancel | click
+}	
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
