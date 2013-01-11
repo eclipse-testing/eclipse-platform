@@ -1,0 +1,42 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
+Element-Name: Hide Closed Project In Project Explorer
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _AcSbkFuwEeK4FvzaGQ3MSg
+Save-Time: 1/11/13 4:25 PM
+Tags: Platform/Filters
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Close one existing project
+2. Open "Available Customize" window from Project Explorer view
+3. Set "Closed projects" check-box in Filters tab
+4. Make sure that closed project is hidden
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+with [get-view "Project Explorer"] {
+    get-tree | select TestProject2 | get-menu "Close Project" | click
+    get-menu "Customize View..." | click
+}
+with [get-window "Available Customizations"] {
+    get-table | get-item "Closed projects" | check
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-property itemCount | equals 1 | verify-true
+    get-item TestProject1 | get-property caption | equals TestProject1 | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
