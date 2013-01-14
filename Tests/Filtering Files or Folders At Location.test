@@ -1,0 +1,187 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
+Element-Name: Filtering Files or Folders At Location
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: __v8JkF45EeKshaNlhvSbNA
+Save-Time: 1/14/13 6:35 PM
+Tags: Platform/Filters
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS
+
+1. Open "Properties\Resource\Resource Filters" window from Project Explorer view
+2. Add filters at location of files or folders
+3. Make sure that files in project is hidden
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree | select "Resource/Resource Filters"
+    get-button "Add Group..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "Filter type" | get-button "Exclude all" | click
+        with [get-group "Applies to"] {
+            get-button "Files and folders" | click
+            get-button "All children (recursive)" | click
+        }
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/\\(AND\\)   \\(recursive\\)"
+    get-button "Add Group..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group | get-combo | select NOT
+        get-button OK | click
+    }
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "File and Folder Attributes" | get-editbox | set-text "*.png"
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/\\(NOT \\(\\) AND Name matches \\*.png\\)   \\(recursive\\)/NOT \\(\\)"
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        with [get-group "File and Folder Attributes"] {
+            get-combo | select Location
+            get-editbox | set-text "*UML*"
+        }
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 5 | verify-true
+    get-item "TestProject1/rlmDbModel.mwb" | get-property caption | equals "rlmDbModel.mwb" | verify-true
+    get-item "TestProject1/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item "TestProject1/doc/UML diagrams" | get-property childCount | equals 6 | verify-true
+    get-item "TestProject1/doc/UML diagrams/Scheduling workflow.PNG" | get-property caption 
+        | equals "Scheduling workflow.PNG" | verify-true
+    get-item "TestProject1/doc/UML diagrams/Use cases - Overview.PNG" | get-property caption 
+        | equals "Use cases - Overview.PNG" | verify-true
+    get-item "TestProject1/doc/UML diagrams/Use cases - Web application.PNG" | get-property caption 
+        | equals "Use cases - Web application.PNG" | verify-true
+}
+
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:"
+    get-button "Add Group..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "Applies to" | get-button "All children (recursive)" | click
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/\\(AND\\)   \\(recursive\\)"
+    get-button "Add Group..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group | get-combo | select OR
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/\\(\\(OR\\) AND\\)   \\(recursive\\)/\\(OR\\)"
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "File and Folder Attributes" | get-editbox | set-text "*.di"
+        get-button OK | click
+    }
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "File and Folder Attributes" | get-editbox | set-text "*.uml"
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/\\(\\(Name matches \\*.di OR Name matches \\*.uml\\) AND\\)   \\(recursive\\)"
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        with [get-group "File and Folder Attributes"] {
+            get-combo | select Location
+            get-editbox | set-text "*uml*"
+        }
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item "TestProject1/doc/UML diagrams" | get-property childCount | equals 4 | verify-true
+    get-item "TestProject1/doc/UML diagrams/RLM model.notation" | get-property caption | equals "RLM model.notation" 
+        | verify-true
+    get-item "TestProject1/doc/UML diagrams/Scheduling workflow.PNG" | get-property caption 
+        | equals "Scheduling workflow.PNG" | verify-true
+    get-item "TestProject1/doc/UML diagrams/Use cases - Overview.PNG" | get-property caption 
+        | equals "Use cases - Overview.PNG" | verify-true
+    get-item "TestProject1/doc/UML diagrams/Use cases - Web application.PNG" | get-property caption 
+        | equals "Use cases - Web application.PNG" | verify-true
+    get-item TestProject1 | get-property childCount | equals 5 | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/\\(\\(Name matches \\*.di OR Name matches \\*.uml\\) AND Location matches \\*uml\\*\\)   \\(recursive\\)/Location matches \\*uml\\*"
+    get-button "Edit..." | click
+    with [get-window "Edit Resource Filter"] {
+        get-group "File and Folder Attributes" | get-button "Case sensitive" | click
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item "TestProject1/doc/UML diagrams" | get-property childCount | equals 5 | verify-true
+    get-item "TestProject1/doc/UML diagrams/RLM model.di" | get-property caption | equals "RLM model.di" | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    with [get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."]] {
+        select "Exclude all:/\\(\\(Name matches \\*.di OR Name matches \\*.uml\\) AND Location matches \\*uml\\*\\)   \\(recursive\\)"
+        get-item "Exclude all:/\\(\\(Name matches \\*.di OR Name matches \\*.uml\\) AND Location matches \\*uml\\*\\)   \\(recursive\\)" 
+            | drag-start 1 12
+        get-item "Exclude all:/\\(NOT \\(Location matches \\*UML\\*\\) AND Name matches \\*.png\\)   \\(recursive\\)" 
+            | drag-enter 7 12 -detail 2 -operation 2
+        get-item "Exclude all:/\\(NOT \\(Location matches \\*UML\\*\\) AND Name matches \\*.png\\)   \\(recursive\\)" 
+            | drag-over 8 -detail 2 -operation 2
+        get-item "Exclude all:" | drag-over 27 -detail 2 -operation 2
+        get-item "Include only:" | drag-over 28 9 -detail 2 -operation 2
+        drag-exit
+        get-item "Include only:" | drag-accept 28 9 -detail 2 -operation 2
+        drag-set-data
+        get-item "Include only:" | drop 28 9 -detail 2 -operation 2
+        select "Exclude all:/\\(NOT \\(Location matches \\*UML\\*\\) AND Name matches \\*.png\\)   \\(recursive\\)" 
+            | drag-end -detail 2
+        select "Include only:/\\(\\(Name matches \\*.di OR Name matches \\*.uml\\) AND Location matches \\*uml\\*\\)   \\(recursive\\)"
+    }
+    get-button "Edit..." | click
+    get-window "Edit Resource Filter" | get-button OK | click
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 3 | verify-true
+    get-item "TestProject1/doc/UML diagrams" | get-property childCount | equals 1 | verify-true
+    get-item "TestProject1/doc/UML diagrams/RLM model.uml" | get-property caption | equals "RLM model.uml" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

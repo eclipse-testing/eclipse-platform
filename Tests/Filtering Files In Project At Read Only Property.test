@@ -7,7 +7,84 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _4fywMFvdEeK4FvzaGQ3MSg
-Save-Time: 1/11/13 6:13 PM
-Tags: skipExecution, Platform/Filters
+Save-Time: 1/14/13 12:02 PM
+Tags: Platform/Filters
 Testcase-Type: ecl
 
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS:
+
+1. Set for file in the project "Read only" attribute
+2. Open "Properties"for project and add "Resource Filters", select "Files" in Applies to section, select "Read Only" in "File and Folder Attributes" 
+3. Make sure that filter is applies and files is hidden
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select "TestProject1/rlmDbModel.mwb" | get-menu Properties | click
+with [get-window "Properties for rlmDbModel.mwb"] {
+    get-tree | select Resource
+    get-button "Read only" | click
+    get-button Apply | click
+    get-button OK | click
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree | select "Resource/Resource Filters"
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "File and Folder Attributes" | get-combo | select "Read Only"
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 4 | verify-true
+    get-item "TestProject1/rlmDbModel.mwb" | get-property caption | equals "rlmDbModel.mwb" | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Include only:/Read Only equals true" | double-click
+    with [get-window "Edit Resource Filter"] {
+        get-group "Filter type" | get-button "Exclude all" | click
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Include only:"
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 5 | verify-true
+    get-item "TestProject1/Database model.png" | get-property caption | equals "Database model.png" | verify-true
+    get-item "TestProject1/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Exclude all:/Read Only equals true"
+    get-button "Edit..." | click
+    with [get-window "Edit Resource Filter"] {
+        get-group "File and Folder Attributes" | get-combo -index 2 | select false
+        get-group "Applies to" | get-button "All children (recursive)" | click
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 4 | verify-true
+    get-item "TestProject1/rlmDbModel.mwb" | get-property caption | equals "rlmDbModel.mwb" | verify-true
+}
+get-view "Project Explorer" | get-tree | get-item "TestProject1/setup" | get-property childCount | equals 3 
+    | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

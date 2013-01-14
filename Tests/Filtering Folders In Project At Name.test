@@ -7,8 +7,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _z-lO0FvdEeK4FvzaGQ3MSg
-Save-Time: 1/11/13 6:13 PM
-Tags: skipExecution, Platform/Filters
+Save-Time: 1/14/13 12:27 PM
+Tags: Platform/Filters
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -18,6 +18,70 @@ Entry-Name: .description
 TEST STEPS
 
 1. Open "Properties\Resource\Resource Filters" window from Project Explorer view
-2. Add filters at name
-3. Make sure that files in project is hidden
+2. Add filters at name of folder
+3. Make sure that folders in project is hidden
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "Applies to" | get-button Folders | click
+        get-group "File and Folder Attributes" | get-editbox | set-text doc
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 4 | verify-true
+    get-item "TestProject1/doc" | get-property caption | equals doc | verify-true
+    get-item "TestProject1/Database model.png" | get-property caption | equals "Database model.png" | verify-true
+    get-item "TestProject1/rlmDbModel.mwb" | get-property caption | equals "rlmDbModel.mwb" | verify-true
+    get-item "TestProject1/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Include only:/Name matches doc" | double-click
+    with [get-window "Edit Resource Filter"] {
+        get-group "Filter type" | get-button "Exclude all" | click
+        get-button OK | click
+    }
+    get-tree 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        | select "Include only:"
+    get-button Apply | click
+    get-button OK | click
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 5 | verify-true
+    get-item "TestProject1/setup" | get-property caption | equals setup | verify-true
+    get-item "TestProject1/tests" | get-property caption | equals tests | verify-true
+    get-item "TestProject1/Database model.png" | get-property caption | equals "Database model.png" | verify-true
+    get-item "TestProject1/rlmDbModel.mwb" | get-property caption | equals "rlmDbModel.mwb" | verify-true
+    get-item "TestProject1/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+with [get-window "Properties for TestProject1"] {
+    get-button "Add..." | click
+    with [get-window "Add Resource Filter for project TestProject1"] {
+        get-group "Applies to" | get-button Folders | click
+        get-group "Filter type" | get-button "Exclude all" | click
+        get-group "File and Folder Attributes" | get-editbox | set-text "*cases*"
+        get-group "Applies to" | get-button "All children (recursive)" | click
+        get-button OK | click
+    }
+    get-button Apply | click
+    get-button OK | click
+}
+get-view "Project Explorer" | get-tree | select "TestProject1/tests"
+with [get-view "Project Explorer" | get-tree] {
+    get-item TestProject1 | get-property childCount | equals 5 | verify-true
+    get-item "TestProject1/tests" | get-property childCount | equals 0 | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
