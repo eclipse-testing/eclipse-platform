@@ -1,0 +1,89 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
+Element-Name: Export Resource With Overwritting Existing Files
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _7dAUgF7YEeKESKM3MHotsA
+Save-Time: 1/15/13 1:22 PM
+Tags: Platform/Export
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS:
+
+1. Select "Export" in "File"main menu
+2. Select "General\File System" in Export Wizard
+3. Select project and press "Filter Types..."
+4. Select several types of files
+5. Set "Create directory structure for files" radio-button - make sure that at the exporting only selected files is added with saving directory structure
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | get-menu "Export..." | click
+with [get-window Export] {
+    get-tree | select "General/File System"
+    get-button "Next >" | click
+    with [get-tree] {
+        get-item TestProject1 | check
+        get-item TestProject2 | check
+    }
+    get-button "Filter Types..." | click
+    with [get-window "Select Types"] {
+        get-editbox -after [get-label "Other extensions:"] | set-text "*.java"
+        get-button OK | click
+    }
+}
+set-dialog-result Folder "platform:/resource/MyProject"
+with [get-window Export] {
+    get-button "Browse..." | click
+    get-button Finish | click
+    get-window Question | get-button Yes | click
+}
+get-view "Project Explorer" | get-tree | select MyProject | get-menu Refresh | click
+with [get-view "Project Explorer" | get-tree] {
+    get-item MyProject | get-property childCount | equals 6 | verify-true
+    get-item "MyProject/MessageContent.java" | get-property caption | equals "MessageContent.java" | verify-true
+    get-item "MyProject/MessageJobServiceImpl.java" | get-property caption | equals "MessageJobServiceImpl.java" 
+        | verify-true
+    get-item "MyProject/messages.java" | get-property caption | equals "messages.java" | verify-true
+    get-item "MyProject/MessageServiceImpl.java" | get-property caption | equals "MessageServiceImpl.java" | verify-true
+}
+with [get-view "Project Explorer" | get-tree] {
+    select "MyProject/MessageContent.java" "MyProject/messages.java"
+    get-menu Delete | click
+}
+get-window "Delete Resources" | get-button OK | click
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu "Export..." | click
+with [get-window Export] {
+    get-tree | select "General/File System"
+    get-button "Next >" | click
+    with [get-tree] {
+        get-item TestProject1 | check
+        get-item TestProject2 | check
+    }
+    get-button "Filter Types..." | click
+    with [get-window "Select Types"] {
+        get-editbox -after [get-label "Other extensions:"] | set-text "*.java"
+        get-button OK | click
+    }
+    get-group Options | get-button "Overwrite existing files without warning" | click
+    get-button Finish | click
+}
+get-view "Project Explorer" | get-tree | select MyProject | get-menu Refresh | click
+with [get-view "Project Explorer" | get-tree] {
+    get-item MyProject | get-property childCount | equals 6 | verify-true
+    get-item "MyProject/MessageContent.java" | get-property caption | equals "MessageContent.java" | verify-true
+    get-item "MyProject/MessageJobServiceImpl.java" | get-property caption | equals "MessageJobServiceImpl.java" 
+        | verify-true
+    get-item "MyProject/messages.java" | get-property caption | equals "messages.java" | verify-true
+    get-item "MyProject/MessageServiceImpl.java" | get-property caption | equals "MessageServiceImpl.java" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

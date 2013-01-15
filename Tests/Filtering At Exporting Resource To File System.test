@@ -1,0 +1,66 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
+Element-Name: Filtering At Exporting Resource To File System
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _KcRX4F7TEeKESKM3MHotsA
+Save-Time: 1/15/13 12:48 PM
+Tags: Platform/Export
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS:
+
+1. Select "Export" in "File"main menu
+2. Select "General\File System" in Export Wizard
+3. Select project and press "Filter Types..."
+4. Select several types of files  - make sure that at the exporting only selected files is added
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-menu "File/Export..." | click
+with [get-window Export] {
+    get-tree | select "General/File System"
+    get-button "Next >" | click
+    get-button "Select All" | click
+    get-button "Filter Types..." | click
+    with [get-window "Select Types"] {
+        with [get-table] {
+            get-item "\\*.xml" | check
+            get-item "\\*.html" | check
+        }
+        get-editbox -after [get-label "Other extensions:"] | set-text "*.png, *.db"
+        get-button OK | click
+    }
+}
+set-dialog-result Folder "platform:/resource/MyProject"
+with [get-window Export] {
+    get-button "Browse..." | click
+    get-combo -after [get-label "To directory:"] | set-text "C:\\Users\\Nastya\\aut-E4_pl_bug\\MyProject\\test"
+    get-tree | get-item TestProject2 | uncheck
+    get-button Finish | click
+    get-window Question | get-button Yes | click
+}
+get-view "Project Explorer" | get-tree | select MyProject | get-menu Refresh | click
+with [get-view "Project Explorer" | get-tree] {
+    get-item "MyProject/test" | get-property caption | equals test | verify-true
+    get-item "MyProject/test" | get-property childCount | equals 6 | verify-true
+    get-item "MyProject/test/Database model.png" | get-property caption | equals "Database model.png" | verify-true
+    get-item "MyProject/test/module.xml" | get-property caption | equals "module.xml" | verify-true
+    get-item "MyProject/test/Scheduling workflow.PNG" | get-property caption | equals "Scheduling workflow.PNG" 
+        | verify-true
+    get-item "MyProject/test/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+    get-item "MyProject/test/Use cases - Overview.PNG" | get-property caption | equals "Use cases - Overview.PNG" 
+        | verify-true
+    get-item "MyProject/test/Use cases - Web application.PNG" | get-property caption 
+        | equals "Use cases - Web application.PNG" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
