@@ -1,0 +1,79 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw,_zqTlwF4_EeKshaNlhvSbNA
+Element-Name: Import Project With Copying Into Workspace
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _8BKBAF-1EeKTILEQp4mvMQ
+Save-Time: 1/16/13 3:41 PM
+Tags: Platform/Import
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS:
+
+1. Select "Import" from File main menu
+2. Select "General\Existing Project Into Workspace" in Import Wizard
+3. Select root folder
+4. Make sure that "Copy projects into workspace" is not checked
+5. Press "Finish" button
+6. Make sure that files ic not copied to workspace
+7. Select "Import" from File main menu
+8. Select "General\Existing Project Into Workspace" in Import Wizard
+9. Select root folder
+10. Set "Copy projects into workspace" check-box
+11. Press "Finish" button
+12. Make sure that files of porject is copied to workspace
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | get-menu "Import..." | click
+with [get-window Import] {
+    get-tree | select "General/Existing Projects into Workspace"
+    get-button "Next >" | click
+}
+set-dialog-result Folder "platform:/resource/ImportingProject/TestProject1"
+get-window Import | get-button "Browse..." | click
+with [get-window Import | get-button "Copy projects into workspace"] {
+    get-property enablement | equals true | verify-true
+    get-property selected | equals false | verify-true
+}
+get-window Import | get-button Finish | click
+with [get-view "Project Explorer" | get-tree] {
+    get-property itemCount | equals 2 | verify-true
+    get-item TestProject1 | get-property caption | equals TestProject1 | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
+get-window "Properties for TestProject1" | get-tree | select Resource | double-click
+get-window "Properties for TestProject1" | get-editbox -after [get-label "Location:"] | get-property text 
+    | equals [substitute-variables "${workspace_loc}\\ImportingProject\\TestProject1"] | verify-true
+get-window "Properties for TestProject1" | get-button OK | click
+get-view "Project Explorer" | get-tree | select TestProject1 | get-menu "Import..." | click
+with [get-window Import] {
+    get-tree | select "General/Existing Projects into Workspace"
+    get-button "Next >" | click
+}
+set-dialog-result Folder "platform:/resource/ImportingProject/TestProject2"
+with [get-window Import] {
+    get-button "Browse..." | click
+    get-button "Copy projects into workspace" | click
+    get-button Finish | click
+}
+get-view "Project Explorer" | get-tree | select TestProject2
+with [get-view "Project Explorer" | get-tree] {
+    get-property itemCount | equals 3 | verify-true
+    get-item TestProject2 | get-property caption | equals TestProject2 | verify-true
+}
+get-view "Project Explorer" | get-tree | select TestProject2 | get-menu Properties | click
+get-window "Properties for TestProject2" | get-tree | select Resource
+get-window "Properties for TestProject2" | get-editbox -after [get-label "Location:"] | get-property text 
+    | equals [substitute-variables "${workspace_loc}\TestProject2"] | verify-true
+get-window "Properties for TestProject2" | get-button OK | click
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,0 +1,59 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw,_zqTlwF4_EeKshaNlhvSbNA
+Element-Name: Import Resource From File System
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _1G4AcV76EeKTFKoCTCVW5Q
+Save-Time: 1/16/13 2:58 PM
+Tags: Platform/Import
+Testcase-Type: ecl
+
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-menu "File/Import..." | click
+with [get-window Import] {
+    get-tree | select "General/File System"
+    get-button "Next >" | click
+}
+set-dialog-result Folder "platform:/resource/ImportingProject"
+with [get-window Import] {
+    get-button "Browse..." | click
+    with [get-tree] {
+        get-item "ImportingProject/TestProject1" | check
+        get-item "ImportingProject/TestProject2" | check
+    }
+    get-button "Filter Types..." | click
+    with [get-window "Select Types"] {
+        get-table | get-item "\\*.xml" | check
+        get-editbox -after [get-label "Other extensions:"] | set-text "*.java, *.db"
+        get-button OK | click
+    }
+    get-button "Browse..." -after [get-label "Into folder:"] | click
+    with [get-window "Import into Folder"] {
+        get-tree | select MyProject
+        get-button OK | click
+    }
+    get-group Options | get-button "Overwrite existing resources without warning" | click
+    get-button Finish | click
+}
+get-view "Project Explorer" | get-tree | get-item MyProject | get-property childCount | equals 4 | verify-true
+with [get-view "Project Explorer" | get-tree] {
+    get-item "MyProject/TestProject1" | get-property childCount | equals 2 | verify-true
+    get-item "MyProject/TestProject1/setup" | get-property caption | equals setup | verify-true
+    get-item "MyProject/TestProject1/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+    get-item "MyProject/TestProject2" | get-property childCount | equals 6 | verify-true
+    get-item "MyProject/TestProject2/MessageContent.java" | get-property caption | equals "MessageContent.java" 
+        | verify-true
+    get-item "MyProject/TestProject2/messages.java" | get-property caption | equals "messages.java" | verify-true
+}
+with [get-view "Project Explorer" | get-tree] {
+    get-item "MyProject/TestProject2/org.eclipse.ui.editors" | get-property childCount | equals 1 | verify-true
+    get-item "MyProject/TestProject2/org.eclipse.ui.editors/dialog_settings.xml" | get-property caption 
+        | equals "dialog_settings.xml" | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
