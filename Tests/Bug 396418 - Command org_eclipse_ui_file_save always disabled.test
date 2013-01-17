@@ -1,0 +1,60 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw
+Element-Name: Bug 396418 - Save changes in File
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: https://bugs.eclipse.org/bugs/show_bug.cgi?id=396418
+Id: _BfTawGBxEeKTILEQp4mvMQ
+Save-Time: 1/17/13 1:53 PM
+Tags: Bugzilla/396418, Platform/Editing
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS:
+
+1. Open file in editor and made changes in file
+2. Press "Save" button on toolbar - make sure that changes in file were saved
+3. Open another file and made changes
+4. Press "Ctrl+S" - make sure that changes in file were saved
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
+with [get-editor File1 | get-text-viewer] {
+    set-caret-pos 6 5
+    key-type Enter
+    type-text "new text"
+}
+get-tab-folder -index 2 | get-property activePage | equals "*File1" | verify-true
+get-button "Save (M1+S)" | get-property enablement | equals true | verify-true
+get-button "Save All (M1+M2+S)" | get-property enablement | equals true | verify-true
+get-button "Save (M1+S)" | click
+get-tab-folder -index 2 | get-property activePage | equals File1 | verify-true
+with [get-editor File1 | get-text-viewer] {
+    set-caret-pos 7 9
+    key-type Enter
+    type-text "next text"
+}
+get-tab-folder -index 2 | get-property activePage | equals "*File1" | verify-true
+with [get-editor File1 | get-text-viewer] {
+    set-caret-pos 8 10
+    key-type "M1+s"
+}
+get-tab-folder -index 2 | get-property activePage | equals File1 | verify-true
+get-editor File1 | close
+get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
+get-editor File1 | get-editbox | get-property text | equals "This is a text of File1\n\n"
+    + "1111\n"
+    + "2222\n"
+    + "3333\n"
+    + "4444\n"
+    + "new text\n"
+    + "next text" | verify-true
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

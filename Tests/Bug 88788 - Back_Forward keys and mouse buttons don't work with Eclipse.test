@@ -1,0 +1,80 @@
+--- Q7 testcase ---
+Format-Version: 1.0
+Q7-vendor: www.xored.com/q7
+Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
+Element-Name: Bug 88788 - Back/Forward keys and mouse buttons don't work with Eclipse
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: https://bugs.eclipse.org/bugs/show_bug.cgi?id=88788
+Id: _Z_UwwGBtEeKTILEQp4mvMQ
+Save-Time: 1/17/13 1:54 PM
+Tags: Bugzilla/88788, Platform/Workbench
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+TEST STEPS:
+
+1. Open two files in editors
+2. Make sure that navigate between editors is performed by buttons on toolbar
+3. Make sure that navigate between editors is performed by keyboard
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+with [get-view "Project Explorer" | get-tree] {
+    select "TestProject1/Thumbs.db" | double-click
+    select "TestProject2/org.eclipse.ui.ide/dialog_settings.xml" | double-click
+    select "TestProject1/setup/modules/main/module.xml" | double-click
+}
+get-button "Back to dialog_settings.xml (M3+Left)" | click
+with [get-tab-folder -index 2] {
+    get-property activePage | equals "dialog_settings.xml" | verify-true
+    get-property tabCount | equals 3 | verify-true
+}
+with [get-editor "dialog_settings.xml" | get-text-viewer] {
+    key-type "M3+ARROW_LEFT"
+}
+with [get-tab-folder -index 2] {
+    get-property activePage | equals "Thumbs.db" | verify-true
+    get-property tabCount | equals 3 | verify-true
+}
+get-button "Forward to dialog_settings.xml (M3+Right)" | click
+with [get-tab-folder -index 2] {
+    get-property activePage | equals "dialog_settings.xml" | verify-true
+    get-property tabCount | equals 3 | verify-true
+}
+get-editor "dialog_settings.xml" | get-text-viewer | key-type "M3+ARROW_RIGHT"
+with [get-tab-folder -index 2] {
+    get-property activePage | equals "module.xml" | verify-true
+    get-property tabCount | equals 3 | verify-true
+}
+with [get-editor "module.xml" | get-text-viewer] {
+    set-caret-pos 10 10
+    key-type Enter
+    type-text test
+    key-type "M1+s"
+}
+get-menu "File/Close All" | click
+get-button "Last Edit Location (M1+Q)" | click
+with [get-tab-folder -index 2] {
+    get-property activePage | equals "module.xml" | verify-true
+    get-property tabCount | equals 1 | verify-true
+}
+get-view "Project Explorer" | get-tree | select "TestProject2/org.eclipse.ui.editors/dialog_settings.xml" | double-click
+with [get-editor "dialog_settings.xml" | get-text-viewer] {
+    set-caret-pos 6 1
+    type-text test
+    key-type "M1+s"
+}
+get-menu "File/Close All" | click
+get-view "Project Explorer" | get-tree | key-type "M1+q"
+//get-editor "dialog_settings.xml" | get-text-viewer | key-type "M1+q"
+with [get-tab-folder -index 2] {
+    get-property activePage | equals "dialog_settings.xml" | verify-true
+    get-property tabCount | equals 1 | verify-true
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
