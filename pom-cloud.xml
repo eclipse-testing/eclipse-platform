@@ -43,7 +43,7 @@
         <configuration>
           <metadata>
             <public>true</public>
-            <projectName>Eclipse 4.3 Platform</projectName>
+            <projectName>Eclipse Platform</projectName>
             <buildName>${build-name}</buildName>
           </metadata>
           <classifiers>
