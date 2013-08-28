@@ -10,7 +10,7 @@
   <properties>
     <q7-server-uri>cloud.xored.com</q7-server-uri>
     <q7-version>1.2.14-SNAPSHOT</q7-version>
-    <build-name>N20130827-2000</build-name>
+    <build-name>I20130828-1000</build-name>
     <platform-file>eclipse-platform-${build-name}-win32.zip</platform-file>
     <platform-url>http://download.eclipse.org</platform-url>
     <platform-path>eclipse/downloads/drops4/${build-name}/eclipse-platform-${build-name}-win32.zip</platform-path>
