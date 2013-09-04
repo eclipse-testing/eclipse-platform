@@ -6,8 +6,11 @@ then
 elif [[ "$1" == "NIGHTLY" ]]
 then
     PREFIX="N"
+elif [[ "$1" == "MAINTENANCE" ]]
+then
+    PREFIX="M"
 else
-    "Please use $0 {INTEGRATION,NIGHTLY}"
+    "Please use $0 {INTEGRATION,NIGHTLY,MAINTENANCE}"
 fi
 
 LATEST=`curl -s http://download.eclipse.org/eclipse/downloads/ \
