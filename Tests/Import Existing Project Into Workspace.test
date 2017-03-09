@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw,_zqTlwF4_EeKshaNlhvSbNA
 Element-Name: Import Existing Project Into Workspace
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _Ui2fIF77EeKTFKoCTCVW5Q
-Save-Time: 1/16/13 2:45 PM
+Runtime-Version: 2.2.0.201703090017
+Save-Time: 3/9/17 4:58 PM
 Tags: Platform/Import
 Testcase-Type: ecl
 
@@ -52,11 +52,8 @@ with [get-window Import] {
 }
 set-dialog-result File "platform:/resource/ImportingProject/ProjectInZip.zip"
 get-window Import | get-button "Browse..." -index 1 | click
-with [get-window Import | get-tree] {
-    get-property itemCount | equals 1 | verify-true
-    get-item "TestProject2 \\(TestProject2\\)" | get-property caption | equals "TestProject2 (TestProject2)" 
-        | verify-true
-}
+get-window Import | get-tree | get-item -path "TestProject2 \\(TestProject2\\/\\)" | get-property caption 
+    | equals "TestProject2 (TestProject2/)" | verify-true
 get-window Import | get-button Finish | click
 get-view "Project Explorer" | get-tree | get-property itemCount | equals 3 | verify-true
 with [get-view "Project Explorer" | get-tree] {

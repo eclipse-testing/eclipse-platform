@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
 Element-Name: Filtering Files or Folders At Location
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: __v8JkF45EeKshaNlhvSbNA
-Save-Time: 1/14/13 6:35 PM
+Runtime-Version: 2.2.0.201703090017
+Save-Time: 3/9/17 4:21 PM
 Tags: Platform/Filters
 Testcase-Type: ecl
 
@@ -45,7 +45,7 @@ with [get-window "Properties for TestProject1"] {
         get-group | get-combo | select NOT
         get-button OK | click
     }
-    get-button "Add..." | click
+    get-button "Add Filter..." | click
     with [get-window "Add Resource Filter for project TestProject1"] {
         get-group "File and Folder Attributes" | get-editbox | set-text "*.png"
         get-button OK | click
@@ -53,7 +53,7 @@ with [get-window "Properties for TestProject1"] {
     get-tree 
         -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
         | select "Exclude all:/\\(NOT \\(\\) AND Name matches \\*.png\\)   \\(recursive\\)/NOT \\(\\)"
-    get-button "Add..." | click
+    get-button "Add Filter..." | click
     with [get-window "Add Resource Filter for project TestProject1"] {
         with [get-group "File and Folder Attributes"] {
             get-combo | select Location
@@ -100,12 +100,12 @@ with [get-window "Properties for TestProject1"] {
     get-tree 
         -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
         | select "Exclude all:/\\(\\(OR\\) AND\\)   \\(recursive\\)/\\(OR\\)"
-    get-button "Add..." | click
+    get-button "Add Filter..." | click
     with [get-window "Add Resource Filter for project TestProject1"] {
         get-group "File and Folder Attributes" | get-editbox | set-text "*.di"
         get-button OK | click
     }
-    get-button "Add..." | click
+    get-button "Add Filter..." | click
     with [get-window "Add Resource Filter for project TestProject1"] {
         get-group "File and Folder Attributes" | get-editbox | set-text "*.uml"
         get-button OK | click
@@ -113,7 +113,7 @@ with [get-window "Properties for TestProject1"] {
     get-tree 
         -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
         | select "Exclude all:/\\(\\(Name matches \\*.di OR Name matches \\*.uml\\) AND\\)   \\(recursive\\)"
-    get-button "Add..." | click
+    get-button "Add Filter..." | click
     with [get-window "Add Resource Filter for project TestProject1"] {
         with [get-group "File and Folder Attributes"] {
             get-combo | select Location

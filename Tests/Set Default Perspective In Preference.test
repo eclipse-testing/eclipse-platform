@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw
 Element-Name: Set Default Perspective In Preference
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _yGDmwWCaEeKo8JIwYOQJmg
-Save-Time: 1/18/13 1:18 PM
+Runtime-Version: 2.2.0.201703090017
+Save-Time: 3/9/17 6:03 PM
 Tags: Platform/Workbench
 Testcase-Type: ecl
 
@@ -32,14 +32,12 @@ with [get-window Preferences] {
     get-button "Make Default" | click
 }
 with [get-window Preferences | get-table] {
-    get-property itemCount | equals 3 | verify-true
     get-item "Team Synchronizing \\(default\\)" | get-property caption | equals "Team Synchronizing (default)" 
         | verify-true
 }
 get-window Preferences | get-button OK | click
 get-button "Open Perspective" | click
 with [get-window "Open Perspective" | get-table] {
-    get-property itemCount | equals 3 | verify-true
     get-item "Team Synchronizing \\(default\\)" | get-property caption | equals "Team Synchronizing (default)" 
         | verify-true
 }

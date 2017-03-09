@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
 Element-Name: Filtering Files In Project At Name
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _bw0qUFvdEeK4FvzaGQ3MSg
-Save-Time: 1/14/13 11:34 AM
+Runtime-Version: 2.2.0.201703090017
+Save-Time: 3/9/17 3:59 PM
 Tags: Platform/Filters
 Testcase-Type: ecl
 
@@ -28,7 +28,7 @@ Entry-Name: .content
 get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
 with [get-window "Properties for TestProject1"] {
     get-tree | select "Resource/Resource Filters"
-    get-button "Add..." | click
+    get-button "Add Filter..." | click
     with [get-window "Add Resource Filter for project TestProject1"] {
         get-group "File and Folder Attributes" | get-editbox | set-text "*.png"
         get-button OK | click
@@ -47,7 +47,7 @@ with [get-view "Project Explorer" | get-tree] {
 get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
 with [get-window "Properties for TestProject1"] {
     get-tree 
-        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn't match any of the exclude filters."] 
         | select "Include only:/Name matches \\*.png" | double-click
     with [get-window "Edit Resource Filter"] {
         get-group "Applies to" | get-button "All children (recursive)" | click
@@ -61,14 +61,14 @@ get-view "Project Explorer" | get-tree | get-item "TestProject1/setup" | get-pro
 get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
 with [get-window "Properties for TestProject1"] {
     get-tree 
-        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn't match any of the exclude filters."] 
         | select "Include only:/Name matches \\*.png   \\(recursive\\)" | double-click
     with [get-window "Edit Resource Filter"] {
         get-group "Filter type" | get-button "Exclude all" | click
         get-button OK | click
     }
     get-tree 
-        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn\'t match any of the exclude filters."] 
+        -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn't match any of the exclude filters."] 
         | select "Include only:"
     get-button Apply | click
     get-button OK | click

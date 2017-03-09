@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw
 Element-Name: Turn off Menu Item
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _CYwT8C4sEeKvZeCqdce96Q
-Save-Time: 12/18/12 2:10 PM
+Runtime-Version: 2.2.0.201703090017
+Save-Time: 3/9/17 6:05 PM
 Tags: Platform/Workbench
 Testcase-Type: ecl
 
@@ -26,7 +26,7 @@ TEST STEPS
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-menu "Window/Customize Perspective..." | click
+get-menu "Window/Perspective/Customize Perspective..." | click
 with [get-window "Customize Perspective - Resource"] {
     get-tab-folder | get-tab-item "Menu Visibility" | click
     get-tree | select File | get-item Help | uncheck
@@ -37,7 +37,7 @@ verify-error {get-menu "Help"}
 
 get-menu "File/Restart" | get-property caption | equals Restart | verify-true
 
-get-menu "Window/Customize Perspective..." | click
+get-menu "Window/Perspective/Customize Perspective..." | click
 with [get-window "Customize Perspective - Resource"] {
     get-tab-folder | get-tab-item "Menu Visibility" | click
     get-tree | select File | get-item Help | check
