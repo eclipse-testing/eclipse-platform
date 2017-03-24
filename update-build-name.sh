@@ -16,13 +16,13 @@ fi
 LATEST=`curl -s http://download.eclipse.org/eclipse/downloads/ \
     | grep -o '<a href=['"'"'"][^"'"'"']*['"'"'"]' \
     | sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//' \
-    | grep -e "${PREFIX}201[2-3]" \
+    | grep -e "${PREFIX}2017" \
     | grep -v testResults \
     | sed -e 's:^drops4/::' -e 's:/$::' \
     | sort -u \
     | tail -n1`
 
-CURRENT=`xmllint --noblanks pom-parent.xml \
+CURRENT=`xmllint --noblanks pom.xml \
     | egrep -o '<build-name>[^>]+<\/build-name>' \
     | sed -e 's/<build-name>//' -e 's/<\/build-name>//'`
 
@@ -38,9 +38,9 @@ then
     echo "Up to date"
 elif [[ -n "$LATEST" && -n "$CURRENT" ]]
 then
-    cp pom-parent.xml pom-parent.xml.bak
-    cat pom-parent.xml.bak | sed "s/$CURRENT/$LATEST/g" > pom-parent.xml
-    git commit pom-parent.xml -m "$MESSAGE"
+    cp pom.xml pom.xml.bak
+    cat pom.xml.bak | sed "s/$CURRENT/$LATEST/g" > pom.xml
+    git commit pom.xml -m "$MESSAGE"
 else
     echo "Something is wrong"
     exit 1
