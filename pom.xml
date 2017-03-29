@@ -47,7 +47,7 @@
     <platform-url>http://download.eclipse.org</platform-url>
     <platform-path>eclipse/downloads/drops4/${build-name}/eclipse-platform-${build-name}-${classifier}.${ext}</platform-path>
     <rcptt-maven-version>2.2.0-SNAPSHOT</rcptt-maven-version>
-    <rcptt-version>2.2.0-M6b</rcptt-version>
+    <rcptt-version>2.2.0-SNAPSHOT</rcptt-version>
   </properties>
   <pluginRepositories>
     <pluginRepository>
