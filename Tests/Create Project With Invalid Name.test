@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw
 Element-Name: Create Project With Invalid Name
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _OpkhQFsOEeK4FvzaGQ3MSg
-Save-Time: 1/10/13 5:47 PM
+Runtime-Version: 2.2.0.201703230746
+Save-Time: 3/30/17 11:16 AM
 Tags: Platform/Project
 Testcase-Type: ecl
 
@@ -26,39 +26,39 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 emit {
-   set-param symbol "*"
-   set-param message "* is an invalid character in resource name \'*\'."
+   global [val symbol "*"]
+   global [val message "* is an invalid character in resource name \'*\'."]
 } {
-   set-param symbol "?"
-   set-param message "? is an invalid character in resource name \'?\'."
+   global [val symbol "?"]
+   global [val message "? is an invalid character in resource name \'?\'."]
 } {
-   set-param symbol "|"
-   set-param message "| is an invalid character in resource name \'|\'."
+   global [val symbol "|"]
+   global [val message "| is an invalid character in resource name \'|\'."]
 } {
-   set-param symbol "/"
-   set-param message "/ is an invalid character in resource name \'/\'."
+   global [val symbol "/"]
+   global [val message "/ is an invalid character in resource name \'/\'."]
 } {
-   set-param symbol "\\"
-   set-param message "\\ is an invalid character in resource name \'\\\'."
+   global [val symbol "\\"]
+   global [val message "\\ is an invalid character in resource name \'\\\'."]
 } {
-   set-param symbol ":"
-   set-param message ": is an invalid character in resource name \':\'."
+   global [val symbol ":"]
+   global [val message ": is an invalid character in resource name \':\'."]
 } {
-   set-param symbol "\""
-   set-param message "\" is an invalid character in resource name \'\"\'."
+   global [val symbol "\""]
+   global [val message "\" is an invalid character in resource name \'\"\'."]
 } {
-   set-param symbol " "
-   set-param message "Project name must be specified"
+   global [val symbol " "]
+   global [val message "Project name must be specified"]
 } | repeat-with {
 	get-button New | click -arrow
 	get-menu "Project..." | click
 	with [get-window "New Project"] {
 	    get-tree | select "General/Project"
 	    get-button "Next >" | click
-	    get-editbox -after [get-label "Project name:"] | set-text [get-param symbol]
+	    get-editbox -after [get-label "Project name:"] | set-text $symbol
 	}
 	with [get-window "New Project"] {
-	    get-editbox -after [get-label Project] | get-property text | equals [get-param message] | verify-true
+	    get-editbox -after [get-label Project] | get-property text | equals $message | verify-true
     	get-button Finish | get-property enablement | equals false | verify-true
    		get-button "Next >" | get-property enablement | equals false | verify-true
 	}

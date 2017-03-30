@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _yAIwsFvTEeK4FvzaGQ3MSg
-Runtime-Version: 2.2.0.201703090017
-Save-Time: 3/9/17 4:37 PM
+Runtime-Version: 2.2.0.201703230746
+Save-Time: 3/30/17 10:48 AM
 Tags: Platform/Filters
 Testcase-Type: ecl
 
@@ -26,8 +26,8 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 get-button "View Menu" | click
-get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
-with [get-window "Filters and Customization"] {
+get-view "Project Explorer" | get-menu -path "Customize View..." | click
+with [get-window "Available Customizations"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path ".\\* resources" | uncheck
     get-button OK | click
@@ -41,8 +41,8 @@ with [get-view "Project Explorer" | get-tree] {
     get-item "TestProject2/.project" | get-property caption | equals ".project" | verify-true
 }
 get-button "View Menu" | click
-get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
-with [get-window "Filters and Customization"] {
+get-view "Project Explorer" | get-menu -path "Customize View..." | click
+with [get-window "Available Customizations"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path ".\\* resources" | check
     get-button OK | click

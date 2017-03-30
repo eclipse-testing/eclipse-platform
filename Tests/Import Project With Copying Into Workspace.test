@@ -7,7 +7,7 @@ Element-Version: 3.0
 External-Reference: 
 Id: _8BKBAF-1EeKTILEQp4mvMQ
 Runtime-Version: 2.2.0.201703230746
-Save-Time: 3/24/17 8:13 PM
+Save-Time: 3/30/17 10:43 AM
 Tags: Platform/Import
 Testcase-Type: ecl
 
@@ -34,7 +34,7 @@ TEST STEPS:
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Project Explorer" | get-tree | get-menu "Import/Import..." | click
+get-view "Project Explorer" | get-tree | get-menu "Import..." | click
 with [get-window Import] {
     get-tree | select "General/Existing Projects into Workspace"
     get-button "Next >" | click

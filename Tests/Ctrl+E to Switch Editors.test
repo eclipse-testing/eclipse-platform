@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _7JKEUC1oEeKgx4EWM9YkNw
-Runtime-Version: 2.2.0.201703090017
-Save-Time: 3/9/17 3:20 PM
+Runtime-Version: 2.2.0.201703230746
+Save-Time: 3/30/17 10:26 AM
 Tags: Platform/Workbench
 Testcase-Type: ecl
 
@@ -32,10 +32,10 @@ with [get-view "Project Explorer" | get-tree] {
     select "MyProject/File2" | double-click
 }
 get-eclipse-window | key-type "M1+e"
-with [get-window -from "FilteredTableBaseHandler.openDialog()" | get-table] {
+with [get-window -from "AbstractTableInformationControl.<init>()" | get-table] {
     get-property itemCount | equals 2 | verify-true
-    get-property "getItems().TableItem[0].getText()" | equals File2 | verify-true
-    get-property "getItems().TableItem[1].getText()" | equals File1 | verify-true
+    get-property "getItems().TableItem[0].getText()" | equals File1 | verify-true
+    get-property "getItems().TableItem[1].getText()" | equals File2 | verify-true
 }
 get-view "Project Explorer" | get-tree | select MyProject | get-menu "New/File" | click
 with [get-window "New File"] {
@@ -43,10 +43,11 @@ with [get-window "New File"] {
     get-button Finish | click
 }
 get-eclipse-window | key-type "M1+e"
-with [get-window -from "FilteredTableBaseHandler.openDialog()" | get-table] {
+with [get-window -from "AbstractTableInformationControl.<init>()" | get-table] {
     get-property itemCount | equals 3 | verify-true
-    get-property "getItems().TableItem[0].getText()" | equals File3 | verify-true
+    get-property "getItems().TableItem[0].getText()" | equals File1 | verify-true
     get-property "getItems().TableItem[1].getText()" | equals File2 | verify-true
-    get-property "getItems().TableItem[2].getText()" | equals File1 | verify-true
+    get-property "getItems().TableItem[2].getText()" | equals File3 | verify-true
 }
+get-window -from "AbstractTableInformationControl.<init>()" | get-table | get-item -path File1 | click
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

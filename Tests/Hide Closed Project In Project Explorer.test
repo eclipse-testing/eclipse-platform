@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _AcSbkFuwEeK4FvzaGQ3MSg
-Runtime-Version: 2.2.0.201703090017
-Save-Time: 3/9/17 4:42 PM
+Runtime-Version: 2.2.0.201703230746
+Save-Time: 3/30/17 10:47 AM
 Tags: Platform/Filters
 Testcase-Type: ecl
 
@@ -29,8 +29,8 @@ Entry-Name: .content
 
 get-view "Project Explorer" | get-tree | select TestProject2 | get-menu "Close Project" | click
 get-button "View Menu" | click
-get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
-with [get-window "Filters and Customization"] {
+get-view "Project Explorer" | get-menu -path "Customize View..." | click
+with [get-window "Available Customizations"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path "Closed projects" | check
     get-button OK | click
