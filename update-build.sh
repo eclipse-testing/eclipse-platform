@@ -25,3 +25,12 @@ LATEST=`curl -s http://download.eclipse.org/eclipse/downloads/ \
 CURRENT=`xmllint --noblanks pom.xml \
     | egrep -o '<build-name>[^>]+<\/build-name>' \
     | sed -e 's/<build-name>//' -e 's/<\/build-name>//'`
+
+echo "LATEST=[$LATEST]"
+echo "CURRENT=[$CURRENT]"
+
+MESSAGE="Updated build-name to $LATEST"
+
+cp pom.xml pom.xml.bak
+cat pom.xml.bak | sed "s/$CURRENT/$LATEST/g" > pom.xml
+rm pom.xml.bak
