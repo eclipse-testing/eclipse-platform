@@ -7,7 +7,7 @@ Element-Version: 3.0
 External-Reference: 
 Id: _OpkhQFsOEeK4FvzaGQ3MSg
 Runtime-Version: 2.2.0.201703230746
-Save-Time: 3/30/17 11:16 AM
+Save-Time: 4/3/17 10:05 PM
 Tags: Platform/Project
 Testcase-Type: ecl
 
@@ -27,28 +27,36 @@ Entry-Name: .content
 
 emit {
    global [val symbol "*"]
-   global [val message "* is an invalid character in resource name \'*\'."]
+		  [val message "* is an invalid character in resource name \'*\'."]
+		  -override
 } {
    global [val symbol "?"]
-   global [val message "? is an invalid character in resource name \'?\'."]
+		  [val message "? is an invalid character in resource name \'?\'."]
+		  -override
 } {
    global [val symbol "|"]
-   global [val message "| is an invalid character in resource name \'|\'."]
+		  [val message "| is an invalid character in resource name \'|\'."]
+		  -override
 } {
    global [val symbol "/"]
-   global [val message "/ is an invalid character in resource name \'/\'."]
+		  [val message "/ is an invalid character in resource name \'/\'."]
+		  -override
 } {
    global [val symbol "\\"]
-   global [val message "\\ is an invalid character in resource name \'\\\'."]
+		  [val message "\\ is an invalid character in resource name \'\\\'."]
+		  -override
 } {
    global [val symbol ":"]
-   global [val message ": is an invalid character in resource name \':\'."]
+		  [val message ": is an invalid character in resource name \':\'."]
+		  -override
 } {
    global [val symbol "\""]
-   global [val message "\" is an invalid character in resource name \'\"\'."]
+		  [val message "\" is an invalid character in resource name \'\"\'."]
+		  -override
 } {
    global [val symbol " "]
-   global [val message "Project name must be specified"]
+		  [val message "Project name must be specified"]
+		  -override
 } | repeat-with {
 	get-button New | click -arrow
 	get-menu "Project..." | click
