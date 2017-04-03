@@ -1,13 +1,13 @@
---- Q7 testcase ---
+--- RCPTT testcase ---
 Format-Version: 1.0
-Q7-vendor: www.xored.com/q7
 Contexts: _hcIFcC1oEeKgx4EWM9YkNw,_hecZoC1oEeKgx4EWM9YkNw,_NGC9IFvLEeK4FvzaGQ3MSg
 Element-Name: Filtering At Exporting Resource To File System
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _KcRX4F7TEeKESKM3MHotsA
-Save-Time: 1/17/13 2:58 PM
+Runtime-Version: 2.2.0.201703262316
+Save-Time: 3/30/17 1:24 PM
 Tags: Platform/Export
 Testcase-Type: ecl
 
@@ -52,16 +52,16 @@ with [get-window Export] {
 }
 get-view "Project Explorer" | get-tree | select MyProject | get-menu Refresh | click
 with [get-view "Project Explorer" | get-tree] {
-    get-item "MyProject/test" | get-property caption | equals test | verify-true
-    get-item "MyProject/test" | get-property childCount | equals 6 | verify-true
-    get-item "MyProject/test/Database model.png" | get-property caption | equals "Database model.png" | verify-true
-    get-item "MyProject/test/module.xml" | get-property caption | equals "module.xml" | verify-true
-    get-item "MyProject/test/Scheduling workflow.PNG" | get-property caption | equals "Scheduling workflow.PNG" 
+    get-item "TestProject1" | get-property caption | equals "TestProject1" | verify-true
+    get-item "TestProject1" | get-property childCount | equals 6 | verify-true
+    get-item "TestProject1/Database model.png" | get-property caption | equals "Database model.png" | verify-true
+    get-item "TestProject1/setup/modules/main/module.xml" | get-property caption | equals "module.xml" | verify-true
+    get-item "TestProject1/doc/UML diagrams/Scheduling workflow.PNG" | get-property caption | equals "Scheduling workflow.PNG" 
         | verify-true
-    get-item "MyProject/test/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
-    get-item "MyProject/test/Use cases - Overview.PNG" | get-property caption | equals "Use cases - Overview.PNG" 
+    get-item "TestProject1/Thumbs.db" | get-property caption | equals "Thumbs.db" | verify-true
+    get-item "TestProject1/doc/UML diagrams/Use cases - Overview.PNG" | get-property caption | equals "Use cases - Overview.PNG" 
         | verify-true
-    get-item "MyProject/test/Use cases - Web application.PNG" | get-property caption 
+    get-item "TestProject1/doc/UML diagrams/Use cases - Web application.PNG" | get-property caption 
         | equals "Use cases - Web application.PNG" | verify-true
 }
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _8BKBAF-1EeKTILEQp4mvMQ
-Runtime-Version: 2.2.0.201703230746
-Save-Time: 3/30/17 10:43 AM
+Runtime-Version: 2.2.0.201703262316
+Save-Time: 3/30/17 2:00 PM
 Tags: Platform/Import
 Testcase-Type: ecl
 
@@ -53,7 +53,7 @@ with [get-view "Project Explorer" | get-tree] {
 get-view "Project Explorer" | get-tree | select TestProject1 | get-menu Properties | click
 get-window "Properties for TestProject1" | get-tree | select Resource | double-click
 get-window "Properties for TestProject1" | get-editbox -after [get-label "Location:"] | get-property text 
-    | equals [substitute-variables "${workspace_loc}\\ImportingProject\\TestProject1"] | verify-true
+    | equals [substitute-variables "${workspace_loc}\/ImportingProject\/TestProject1"] | verify-true
 get-window "Properties for TestProject1" | get-button OK | click
 get-view "Project Explorer" | get-tree | select TestProject1 | get-menu "Import..." | click
 with [get-window Import] {
@@ -74,6 +74,6 @@ with [get-view "Project Explorer" | get-tree] {
 get-view "Project Explorer" | get-tree | select TestProject2 | get-menu Properties | click
 get-window "Properties for TestProject2" | get-tree | select Resource
 get-window "Properties for TestProject2" | get-editbox -after [get-label "Location:"] | get-property text 
-    | equals [substitute-variables "${workspace_loc}\TestProject2"] | verify-true
+    | equals [substitute-variables "${workspace_loc}/TestProject2"] | verify-true
 get-window "Properties for TestProject2" | get-button OK | click
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
