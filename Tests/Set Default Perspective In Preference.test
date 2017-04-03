@@ -35,7 +35,7 @@ with [get-window Preferences | get-table] {
     get-item "Team Synchronizing \\(default\\)" | get-property caption | equals "Team Synchronizing (default)" 
         | verify-true
 }
-get-window Preferences | get-button OK | click
+get-window Preferences | get-button "Apply and Close" | click
 get-button "Open Perspective" | click
 with [get-window "Open Perspective" | get-table] {
     get-item "Team Synchronizing \\(default\\)" | get-property caption | equals "Team Synchronizing (default)" 

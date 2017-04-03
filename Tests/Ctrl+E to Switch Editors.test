@@ -32,7 +32,7 @@ with [get-view "Project Explorer" | get-tree] {
     select "MyProject/File2" | double-click
 }
 get-eclipse-window | key-type "M1+e"
-with [get-window -from "AbstractTableInformationControl.<init>()" | get-table] {
+with [get-window -from "FilteredTableBaseHandler.openDialog()" | get-table] {
     get-property itemCount | equals 2 | verify-true
     get-property "getItems().TableItem[0].getText()" | equals File1 | verify-true
     get-property "getItems().TableItem[1].getText()" | equals File2 | verify-true
@@ -43,11 +43,11 @@ with [get-window "New File"] {
     get-button Finish | click
 }
 get-eclipse-window | key-type "M1+e"
-with [get-window -from "AbstractTableInformationControl.<init>()" | get-table] {
+with [get-window -from "FilteredTableBaseHandler.openDialog()" | get-table] {
     get-property itemCount | equals 3 | verify-true
     get-property "getItems().TableItem[0].getText()" | equals File1 | verify-true
     get-property "getItems().TableItem[1].getText()" | equals File2 | verify-true
     get-property "getItems().TableItem[2].getText()" | equals File3 | verify-true
 }
-get-window -from "AbstractTableInformationControl.<init>()" | get-table | get-item -path File1 | click
+get-window -from "FilteredTableBaseHandler.openDialog()" | get-table | get-item -path File1 | click
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -28,12 +28,12 @@ Entry-Name: .content
 wait 200
 get-view Tasks | get-tree | get-menu "Add Task..." | click
 with [get-window "Add Task"] {
-    get-editbox -after [get-label "Description:"] | set-text 1
+    get-editbox -after [get-label "Use description based filter:"] | set-text 1
     get-button OK | click
 }
 get-view Tasks | get-tree | get-menu "Add Task..." | click
 with [get-window "Add Task"] {
-    get-editbox -after [get-label "Description:"] | set-text 2
+    get-editbox -after [get-label "Use description based filter:"] | set-text 2
     get-button OK | click
 }
 with [get-view Tasks | get-tree] {

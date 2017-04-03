@@ -28,7 +28,7 @@ Entry-Name: .content
 get-view "Project Explorer" | get-tree | select "MyProject/File1"
 get-menu "Edit/Add Bookmark..." | click
 with [get-window "Bookmark Properties"] {
-    get-editbox -after [get-label "Description:"] | set-text B1
+    get-editbox -after [get-label "Use description based filter:"] | set-text B1
     get-button OK | click
 }
 get-view Bookmarks | get-tree | select B1 | get-menu Delete | click

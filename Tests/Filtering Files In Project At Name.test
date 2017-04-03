@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _bw0qUFvdEeK4FvzaGQ3MSg
-Runtime-Version: 2.2.0.201703090017
-Save-Time: 3/9/17 3:59 PM
+Runtime-Version: 2.2.0.201703230746
+Save-Time: 4/3/17 11:36 AM
 Tags: Platform/Filters
 Testcase-Type: ecl
 
@@ -33,8 +33,7 @@ with [get-window "Properties for TestProject1"] {
         get-group "File and Folder Attributes" | get-editbox | set-text "*.png"
         get-button OK | click
     }
-    get-button Apply | click
-    get-button OK | click
+    get-button "Apply and Close" | click
 }
 with [get-view "Project Explorer" | get-tree] {
     get-item TestProject1 | get-property childCount | equals 4 | verify-true
@@ -53,8 +52,7 @@ with [get-window "Properties for TestProject1"] {
         get-group "Applies to" | get-button "All children (recursive)" | click
         get-button OK | click
     }
-    get-button Apply | click
-    get-button OK | click
+    get-button "Apply and Close" | click
 }
 get-view "Project Explorer" | get-tree | get-item "TestProject1/setup" | get-property childCount | equals 3 
     | verify-true
@@ -70,8 +68,7 @@ with [get-window "Properties for TestProject1"] {
     get-tree 
         -after [get-label "A file system object will be added to the workspace tree during the refresh operationif it matches any of the include filters and doesn't match any of the exclude filters."] 
         | select "Include only:"
-    get-button Apply | click
-    get-button OK | click
+    get-button "Apply and Close" | click
 }
 with [get-view "Project Explorer" | get-tree] {
     get-item TestProject1 | get-property childCount | equals 5 | verify-true

@@ -29,7 +29,7 @@ with [get-view "Project Explorer" | get-tree] {
     select "MyProject/File1" "MyProject/File2"
     get-menu "Compare With/Each Other" | click
 }
-get-editor "Compare (\'MyProject/File1\' - \'MyProject/File2\')" | get-button "Copy All from Left to Right" | click
+get-editor "Compare (\'MyProject/File1\' - \'MyProject/File2\')" | get-button "Copy All Non-Conflicting Changes from Left to Right" | click
 get-editor "Compare (\'MyProject/File1\' - \'MyProject/File2\')" | get-editbox -after [get-label "MyProject/File2"] 
     -index 1 | get-property text | equals "This is a text of File1\n\n"
     + "1111\n"

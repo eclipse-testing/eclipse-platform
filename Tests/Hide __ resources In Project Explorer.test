@@ -26,7 +26,7 @@ Content-Type: text/ecl
 Entry-Name: .content
 
 get-button "View Menu" | click
-get-view "Project Explorer" | get-menu -path "Customize View..." | click
+get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
 with [get-window "Available Customizations"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path ".\\* resources" | uncheck
@@ -41,7 +41,7 @@ with [get-view "Project Explorer" | get-tree] {
     get-item "TestProject2/.project" | get-property caption | equals ".project" | verify-true
 }
 get-button "View Menu" | click
-get-view "Project Explorer" | get-menu -path "Customize View..." | click
+get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
 with [get-window "Available Customizations"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path ".\\* resources" | check

@@ -30,7 +30,7 @@ get-view Tasks | get-tree | get-menu "Add Task..." | click
 //get-view Tasks | get-tree | get-menu "Add Task..." | click
 
 with [get-window "Add Task"] {
-    get-editbox -after [get-label "Description:"] | set-text Task1
+    get-editbox -after [get-label "Use description based filter:"] | set-text Task1
     get-editbox -after [get-label "On element:"] | click-text 1
     get-editbox -after [get-label "In folder:"] | click-text 1
     get-editbox -after [get-label "Location:"] | click-text 1

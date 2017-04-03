@@ -29,7 +29,7 @@ Entry-Name: .content
 
 get-view "Project Explorer" | get-tree | select TestProject2 | get-menu "Close Project" | click
 get-button "View Menu" | click
-get-view "Project Explorer" | get-menu -path "Customize View..." | click
+get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
 with [get-window "Available Customizations"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path "Closed projects" | check

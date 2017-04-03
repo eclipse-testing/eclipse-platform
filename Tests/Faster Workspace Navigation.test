@@ -25,13 +25,13 @@ Entry-Name: .content
 
 get-menu "Navigate/Open Resource..." | click
 with [get-window "Open Resource"] {
-    get-editbox -after [get-label "Select an item to open (? = any character, * = any string):"] | set-text f
+    get-editbox -after [get-label "Enter resource name prefix, path prefix or pattern (?, * or camel case):"] | set-text f
     get-table | select File1
-    get-editbox -after [get-label "Select an item to open (? = any character, * = any string):"] | set-text fi
+    get-editbox -after [get-label "Enter resource name prefix, path prefix or pattern (?, * or camel case):"] | set-text fi
     get-table | select File1
-    get-editbox -after [get-label "Select an item to open (? = any character, * = any string):"] | set-text fil
+    get-editbox -after [get-label "Enter resource name prefix, path prefix or pattern (?, * or camel case):"] | set-text fil
     get-table | select File1
-    get-editbox -after [get-label "Select an item to open (? = any character, * = any string):"] | set-text file
+    get-editbox -after [get-label "Enter resource name prefix, path prefix or pattern (?, * or camel case):"] | set-text file
     get-table | select File1
 }
 with [get-window "Open Resource" | get-table] {
