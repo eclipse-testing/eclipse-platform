@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: http://jira4.xored.com/browse/QS-2168
 Id: _6RB2kC11EeKPSvD7PhDlFA
-Runtime-Version: 2.2.0.201703090017
-Save-Time: 3/10/17 12:38 PM
+Runtime-Version: 2.2.0.201701011001
+Save-Time: 4/3/17 6:52 PM
 Tags: Platform/Workbench
 Testcase-Type: ecl
 
@@ -28,7 +28,7 @@ Entry-Name: .content
 get-button "Open Perspective" | click
 with [get-window "Open Perspective"] {
     get-table | select Debug
-    get-button OK | click
+    get-button Open | click
 }
 with [get-button Debug -index 1] {
     get-property tooltip | equals Debug | verify-true

@@ -27,7 +27,7 @@ Entry-Name: .content
 
 get-button "View Menu" | click
 get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
-with [get-window "Available Customizations"] {
+with [get-window "Filters and Customization"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path ".\\* resources" | uncheck
     get-button OK | click
@@ -42,7 +42,7 @@ with [get-view "Project Explorer" | get-tree] {
 }
 get-button "View Menu" | click
 get-view "Project Explorer" | get-menu -path "Filters and Customization..." | click
-with [get-window "Available Customizations"] {
+with [get-window "Filters and Customization"] {
     get-tab-folder | get-tab-item Filters | click
     get-table | get-item -path ".\\* resources" | check
     get-button OK | click

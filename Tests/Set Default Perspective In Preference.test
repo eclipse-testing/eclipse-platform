@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _yGDmwWCaEeKo8JIwYOQJmg
-Runtime-Version: 2.2.0.201703090017
-Save-Time: 3/9/17 6:03 PM
+Runtime-Version: 2.2.0.201701011001
+Save-Time: 4/3/17 7:37 PM
 Tags: Platform/Workbench
 Testcase-Type: ecl
 
@@ -43,7 +43,7 @@ with [get-window "Open Perspective" | get-table] {
 }
 with [get-window "Open Perspective"] {
     get-table | select "Team Synchronizing \\(default\\)"
-    get-button OK | click
+    get-button Open | click
 }
 with [get-tab-folder] {
     get-property activePage | equals Synchronize | verify-true

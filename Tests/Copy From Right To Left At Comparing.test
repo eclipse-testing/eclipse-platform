@@ -46,7 +46,7 @@ with [get-editor "Compare (\'MyProject/File1\' - \'MyProject/File2\')"] {
         + "DDDD" | verify-true
 }
 get-editor "Compare (\'MyProject/File1\' - \'MyProject/File2\')" | close
-get-window "Save Resource" | get-button No | click
+get-window "Save Resource" | get-button "Don't Save" | click
 get-view "Project Explorer" | get-tree | select "MyProject/File1" | double-click
 get-editor File1 | get-editbox | get-property text | equals "This is a text of File1\n\n"
     + "1111\n"
