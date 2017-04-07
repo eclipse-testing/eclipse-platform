@@ -33,7 +33,7 @@ with [get-window Preferences] {
 }
 get-menu "Window/Perspective/Open Perspective/Other..." | click
 with [get-window "Open Perspective"] {
-    get-table | select "Resource"
+    get-table | select "Resource.*"
     get-button Open | click
 }
 with [get-eclipse-window -index 1 | get-button Resource] {
