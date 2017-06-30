@@ -42,7 +42,7 @@
     </profile>
   </profiles>
   <properties>
-    <build-name>I20170331-2000</build-name>
+    <build-name>I20170629-2000</build-name>
     <platform-file>eclipse-platform-${build-name}-${classifier}.${ext}</platform-file>
     <platform-url>http://download.eclipse.org</platform-url>
     <platform-path>eclipse/downloads/drops4/${build-name}/eclipse-platform-${build-name}-${classifier}.${ext}</platform-path>
